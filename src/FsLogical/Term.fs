@@ -51,7 +51,8 @@ module Subst =
     let add (k: string) (v: Term) (s: Substitution) : Substitution = s.Add(k, v)
 
     /// Try to find a binding in a substitution.
-    /// PersistentHashMap has no single-lookup tryFind, so we use ContainsKey + indexer.
+    /// PersistentHashMap exposes no TryGetValue; ContainsKey + indexer is the idiomatic
+    /// single-pass equivalent given the available API.
     let tryFind (k: string) (s: Substitution) : Term option =
         if s.ContainsKey(k) then Some s.[k] else None
 
@@ -62,6 +63,7 @@ module Subst =
     let count (s: Substitution) : int = s.Length
 
     /// Return true if the substitution has no bindings.
+    /// PersistentHashMap provides no dedicated IsEmpty property; Length is the canonical check.
     let isEmpty (s: Substitution) : bool = s.Length = 0
 
 /// Smart constructor for a fact (a clause with no body).

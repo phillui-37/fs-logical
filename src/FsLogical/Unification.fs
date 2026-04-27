@@ -6,7 +6,7 @@ open FsLogical.Term
 let rec walk (term: Term) (subst: Substitution) : Term =
     match term with
     | Var v ->
-        match Map.tryFind v subst with
+        match Subst.tryFind v subst with
         | Some t -> walk t subst
         | None -> term
     | _ -> term
@@ -37,7 +37,7 @@ let rec unify (t1: Term) (t2: Term) (subst: Substitution) : Substitution option 
     | _ when t1' = t2' -> Some subst
     | Var v, t | t, Var v ->
         if occursIn v t subst then None
-        else Some (Map.add v t subst)
+        else Some (Subst.add v t subst)
     | Compound(n1, args1), Compound(n2, args2) when n1 = n2 && List.length args1 = List.length args2 ->
         List.fold
             (fun acc (a1, a2) ->
@@ -50,4 +50,4 @@ let rec unify (t1: Term) (t2: Term) (subst: Substitution) : Substitution option 
 
 /// Unify two terms starting with an empty substitution.
 let unifyFresh (t1: Term) (t2: Term) : Substitution option =
-    unify t1 t2 Map.empty
+    unify t1 t2 Subst.empty

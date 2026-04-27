@@ -2,8 +2,16 @@ module FsLogical.Tests.DSLTests
 
 open Xunit
 open FsUnit.Xunit
+open FSharpx.Collections
 open FsLogical.Term
 open FsLogical.DSL
+
+// ── Helpers ──────────────────────────────────────────────────────────────
+
+let private mkSubst (pairs: (string * Term) list) : Substitution =
+    Subst.ofSeq pairs
+
+let private emptySubst : Substitution = Subst.empty
 
 // ── logicDB computation expression ───────────────────────────────────────
 
@@ -77,22 +85,20 @@ let ``logicQuery returns empty when inner query fails`` () =
 
 [<Fact>]
 let ``BoundVar active pattern matches bound variable`` () =
-    let subst = Map.ofList [("X", Atom "john")]
+    let subst = mkSubst [("X", Atom "john")]
     match subst with
     | BoundVar "X" t -> t |> should equal (Atom "john")
     | _ -> failwith "expected BoundVar match"
 
 [<Fact>]
 let ``BoundVar active pattern does not match unbound variable`` () =
-    let subst = Map.empty
-    match subst with
+    match emptySubst with
     | BoundVar "X" _ -> failwith "should not match"
     | _ -> ()  // correct
 
 [<Fact>]
 let ``UnboundVar active pattern matches unbound variable`` () =
-    let subst = Map.empty
-    match subst with
+    match emptySubst with
     | UnboundVar "X" -> ()  // correct
     | _ -> failwith "expected UnboundVar match"
 
@@ -116,13 +122,12 @@ let ``Pred active pattern does not match wrong functor`` () =
 
 [<Fact>]
 let ``valueOf returns bound term`` () =
-    let subst = Map.ofList [("X", Atom "result")]
+    let subst = mkSubst [("X", Atom "result")]
     valueOf "X" subst |> should equal (Atom "result")
 
 [<Fact>]
 let ``valueOf returns Var when unbound`` () =
-    let subst = Map.empty
-    valueOf "X" subst |> should equal (Var "X")
+    valueOf "X" emptySubst |> should equal (Var "X")
 
 // ── Ancestor query via DSL ────────────────────────────────────────────────
 
@@ -149,3 +154,113 @@ let ``|- operator creates rule clause`` () =
     let clause = head |- body
     clause.Head |> should equal head
     clause.Body |> should equal body
+
+// ── Additional DSL tests ──────────────────────────────────────────────────
+
+[<Fact>]
+let ``wild creates unique variable each call`` () =
+    let w1 = wild ()
+    let w2 = wild ()
+    w1 |> should not' (equal w2)
+
+[<Fact>]
+let ``multiple wild calls are all different`` () =
+    let wilds = [ for _ in 1..10 -> wild () ]
+    let distinct = wilds |> List.distinct
+    distinct |> List.length |> should equal 10
+
+[<Fact>]
+let ``logicDB with empty block gives empty database`` () =
+    let db = logicDB { () }
+    db.Clauses |> should be Empty
+
+[<Fact>]
+let ``logicDB with YieldFrom`` () =
+    let moreClauses = [fact (atom "hello"); fact (atom "world")]
+    let db = logicDB {
+        yield! moreClauses
+    }
+    db.Clauses |> List.length |> should equal 2
+
+[<Fact>]
+let ``queryAll with empty goals returns one solution`` () =
+    let solutions = queryAll family [] |> Seq.toList
+    solutions |> List.length |> should equal 1
+
+[<Fact>]
+let ``queryAll with multiple goals`` () =
+    let solutions =
+        queryAll family
+            ["parent" /@ [atom "tom"; Var "X"]
+             "parent" /@ [atom "bob"; Var "Y"]]
+        |> Seq.toList
+    solutions |> List.length |> should equal 4
+
+[<Fact>]
+let ``BoundVar with compound value`` () =
+    let subst = mkSubst [("X", Compound("f", [Atom "a"]))]
+    match subst with
+    | BoundVar "X" t ->
+        t |> should equal (Compound("f", [Atom "a"]))
+    | _ -> failwith "expected BoundVar match"
+
+[<Fact>]
+let ``UnboundVar does not match bound var`` () =
+    let subst = mkSubst [("X", Atom "bound")]
+    match subst with
+    | UnboundVar "X" -> failwith "should not match unbound"
+    | _ -> ()  // correct
+
+[<Fact>]
+let ``Pred with wrong arity doesn't match`` () =
+    let term = "parent" /@ [atom "john"]  // arity 1
+    match term with
+    | Pred "parent" [_; _] -> failwith "should not match arity 2"
+    | Pred "parent" [_] -> ()  // correct: matches arity 1
+    | _ -> failwith "should have matched arity 1"
+
+[<Fact>]
+let ``Pred with zero args`` () =
+    let term = "empty" /@ []
+    match term with
+    | Pred "empty" [] -> ()  // correct
+    | _ -> failwith "expected Pred empty match"
+
+[<Fact>]
+let ``logicQuery with return from inner query failure is empty`` () =
+    let results =
+        logicQuery {
+            let! sub1 = query family ("parent" /@ [atom "nobody"; Var "X"])
+            return valueOf "X" sub1
+        }
+        |> Seq.toList
+    results |> should be Empty
+
+[<Fact>]
+let ``valueOf with chain substitution`` () =
+    let subst = mkSubst [("X", Var "Y"); ("Y", Atom "final")]
+    valueOf "X" subst |> should equal (Atom "final")
+
+[<Fact>]
+let ``atom var int' float' constructors`` () =
+    atom "hello" |> should equal (Atom "hello")
+    var "X" |> should equal (Var "X")
+    int' 42 |> should equal (Integer 42)
+    float' 3.14 |> should equal (Float 3.14)
+
+[<Fact>]
+let ``fact and rule constructors`` () =
+    let f = fact (atom "hello")
+    f.Head |> should equal (Atom "hello")
+    f.Body |> should be Empty
+    let r = rule (atom "head") [atom "body1"; atom "body2"]
+    r.Head |> should equal (Atom "head")
+    r.Body |> List.length |> should equal 2
+
+[<Fact>]
+let ``logicDB builds indexed database correctly`` () =
+    let idb = FsLogical.Solver.indexDatabase family
+    idb.Index |> Map.containsKey ("parent", 2) |> should equal true
+    idb.Index |> Map.containsKey ("ancestor", 2) |> should equal true
+    idb.Index.[("parent", 2)] |> List.length |> should equal 4
+    idb.Index.[("ancestor", 2)] |> List.length |> should equal 2

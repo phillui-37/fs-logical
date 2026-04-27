@@ -1,5 +1,7 @@
 module FsLogical.Term
 
+open FSharpx.Collections
+
 /// A logical term in the Prolog-like framework.
 /// Terms can be atoms, numbers, variables, or compound structures.
 type Term =
@@ -31,13 +33,35 @@ type Clause = {
     Body: Term list
 }
 
-/// A substitution: a mapping from variable names to terms.
-type Substitution = Map<string, Term>
+/// A substitution: a persistent hash map from variable names to terms.
+/// Uses PersistentHashMap for O(1) average lookup vs O(log n) for Map.
+type Substitution = PersistentHashMap<string, Term>
 
 /// A knowledge base: an ordered list of clauses.
 type Database = {
     Clauses: Clause list
 }
+
+/// Helper module for working with Substitution values.
+module Subst =
+    /// The empty substitution.
+    let empty : Substitution = PersistentHashMap.empty
+
+    /// Add a binding to a substitution.
+    let add (k: string) (v: Term) (s: Substitution) : Substitution = s.Add(k, v)
+
+    /// Try to find a binding in a substitution.
+    let tryFind (k: string) (s: Substitution) : Term option =
+        if s.ContainsKey(k) then Some s.[k] else None
+
+    /// Create a substitution from a sequence of key-value pairs.
+    let ofSeq (pairs: seq<string * Term>) : Substitution = PersistentHashMap.ofSeq pairs
+
+    /// Return the number of bindings.
+    let count (s: Substitution) : int = s.Length
+
+    /// Return true if the substitution has no bindings.
+    let isEmpty (s: Substitution) : bool = s.Length = 0
 
 /// Smart constructor for a fact (a clause with no body).
 let fact head = { Head = head; Body = [] }

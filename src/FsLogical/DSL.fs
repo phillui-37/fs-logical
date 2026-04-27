@@ -3,6 +3,7 @@
 /// ergonomic logical programming.
 module FsLogical.DSL
 
+open FSharpx.Collections
 open FsLogical.Term
 open FsLogical.Unification
 open FsLogical.Solver
@@ -11,8 +12,8 @@ open FsLogical.Solver
 
 let mutable private wildCounter = 0
 
-/// Create an anonymous wildcard variable (each use should be unique; use
-/// `freshWild ()` when you need multiple independent wildcards).
+/// Create an anonymous wildcard variable. Each call returns a distinct variable,
+/// so all wildcards in a query are independent of each other.
 let wild () =
     let n = System.Threading.Interlocked.Increment(&wildCounter)
     Var (sprintf "_w%d" n)
@@ -28,6 +29,7 @@ let inline (|-) head body = rule head body
 // ── DatabaseBuilder computation expression ───────────────────────────────
 
 /// Computation expression for building a Database in a readable block.
+/// Uses DList internally for O(1) Combine (append), converting to a list in Run.
 ///
 /// Example:
 /// ```fsharp
@@ -38,12 +40,12 @@ let inline (|-) head body = rule head body
 /// }
 /// ```
 type DatabaseBuilder() =
-    member _.Yield(clause: Clause) : Clause list = [clause]
-    member _.YieldFrom(clauses: Clause list) : Clause list = clauses
-    member _.Combine(a: Clause list, b: Clause list) : Clause list = a @ b
-    member _.Delay(f: unit -> Clause list) : Clause list = f ()
-    member _.Zero() : Clause list = []
-    member _.Run(clauses: Clause list) : Database = { Clauses = clauses }
+    member _.Yield(clause: Clause) : DList<Clause> = DList.singleton clause
+    member _.YieldFrom(clauses: Clause list) : DList<Clause> = DList.ofSeq clauses
+    member _.Combine(a: DList<Clause>, b: DList<Clause>) : DList<Clause> = DList.append a b
+    member _.Delay(f: unit -> DList<Clause>) : DList<Clause> = f ()
+    member _.Zero() : DList<Clause> = DList.empty
+    member _.Run(dl: DList<Clause>) : Database = { Clauses = DList.toList dl }
 
 /// The `logicDB` computation expression builder.
 let logicDB = DatabaseBuilder()

@@ -270,7 +270,7 @@ let ``solveIndexed handles recursive ancestor`` () =
         |> Seq.map (fun sub -> ground "D" sub)
         |> Seq.toList
     ancestors |> should contain (atom "ann")
-    ancestors |> should contain (atom "tom" |> fun _ -> atom "bob")
+    ancestors |> should contain (atom "bob")
 
 [<Fact>]
 let ``solveAllIndexed returns same results as solveAll`` () =

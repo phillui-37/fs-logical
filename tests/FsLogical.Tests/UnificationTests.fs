@@ -19,7 +19,7 @@ let private emptySubst : Substitution = Subst.empty
 let private assertSubstMatches (expected: (string * Term) list) (result: Substitution option) =
     result |> Option.isSome |> should equal true
     let s = result.Value
-    s.Length |> should equal (List.length expected)
+    Subst.count s |> should equal (List.length expected)
     for (k, v) in expected do
         s.ContainsKey(k) |> should equal true
         s.[k] |> should equal v

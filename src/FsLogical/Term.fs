@@ -51,6 +51,7 @@ module Subst =
     let add (k: string) (v: Term) (s: Substitution) : Substitution = s.Add(k, v)
 
     /// Try to find a binding in a substitution.
+    /// PersistentHashMap has no single-lookup tryFind, so we use ContainsKey + indexer.
     let tryFind (k: string) (s: Substitution) : Term option =
         if s.ContainsKey(k) then Some s.[k] else None
 

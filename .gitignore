@@ -1,0 +1,27 @@
+# Build results
+bin/
+obj/
+*.user
+
+# NuGet
+*.nupkg
+*.nuspec
+.nuget/
+packages/
+
+# IDE
+.vs/
+.idea/
+*.suo
+*.sln.ide
+
+# Rider / ReSharper
+.idea/
+*.DotSettings.user
+
+# dotnet test
+TestResults/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,6 +1,6 @@
 # Code Review – FsLogical
 
-> Branch: `review-and-benchmarks`  
+> Branch: `copilot/add-stress-test-and-benchmark`  
 > Reviewed files: `Term.fs`, `Unification.fs`, `Solver.fs`, `DSL.fs`
 
 ---

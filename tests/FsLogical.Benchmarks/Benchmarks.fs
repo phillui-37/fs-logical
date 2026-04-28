@@ -7,14 +7,6 @@ open FsLogical.Solver
 
 // ── Shared test data ──────────────────────────────────────────────────────────
 
-/// Linear chain: chain(0), chain(s(0)), chain(s(s(0))), ...
-let private buildChainDB (depth: int) : Database =
-    let clauses =
-        [ yield fact (Atom "chain_0")
-          for i in 1 .. depth ->
-              fact ("chain" /@ [Integer i]) ]
-    { Clauses = clauses }
-
 /// Ancestor-style database: N parent facts arranged in a linear chain.
 /// parent(0,1), parent(1,2), ..., parent(n-1,n)
 /// ancestor(X,Y) :- parent(X,Y)

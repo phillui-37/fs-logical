@@ -61,9 +61,7 @@ module Subst =
 
     /// Convert a substitution into an immutable F# Map for inspection.
     let toMap (s: Substitution) : Map<string, Term> =
-        s
-        |> Seq.map (fun kvp -> kvp.Key, kvp.Value)
-        |> Map.ofSeq
+        s |> Map.ofSeq
 
     /// Return the number of bindings.
     let count (s: Substitution) : int = s.Length

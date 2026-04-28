@@ -1,5 +1,7 @@
 # fs-logical
 
+![Coverage](https://img.shields.io/badge/coverage-87.0%25-yellowgreen)
+
 A Prolog-like logical programming framework implemented in F# targeting .NET 10.
 
 It implements core Prolog concepts (unification, SLD resolution, backtracking) in idiomatic F# with a DSL-friendly API.
@@ -14,6 +16,7 @@ It implements core Prolog concepts (unification, SLD resolution, backtracking) i
 | Unification | Robinson's algorithm with occurs check (`Unification` module) |
 | Knowledge base | Facts and rules in a `Database` (`Term` module) |
 | Backtracking search | Lazy `seq<Substitution>` via SLD resolution (`Solver` module) |
+| Solver controls | `solveN`, `solveWithOptions`, indexed solver variants |
 | F# DSL | `logicDB {}` CE, `logicQuery {}` CE, operators, active patterns (`DSL` module) |
 
 ---
@@ -82,6 +85,10 @@ tests/
     UnificationTests.fs
     SolverTests.fs
     DSLTests.fs
+    StressTests.fs
+  FsLogical.Benchmarks/
+    Benchmarks.fs
+    Program.fs
 ```
 
 ---
@@ -135,4 +142,31 @@ Requires **.NET 10 SDK**.
 ```bash
 dotnet build
 dotnet test
+```
+
+Coverage:
+
+```bash
+dotnet test tests/FsLogical.Tests/FsLogical.Tests.fsproj --collect:"XPlat Code Coverage"
+```
+
+---
+
+## Benchmark Snapshot
+
+Short-run BenchmarkDotNet sample on GitHub-hosted Linux (`AMD EPYC 7763`, `.NET 10.0.5`):
+
+| Scenario | Mean |
+|---|---:|
+| `ancestor` all descendants, depth 20 (non-indexed) | 550.56 µs |
+| `ancestor` all descendants, depth 20 (indexed) | 372.95 µs |
+| `solve` fan-out enumeration, 1,000 facts (non-indexed) | 730.66 µs |
+| `solve` fan-out enumeration, 1,000 facts (indexed) | 790.79 µs |
+
+The indexed path helps most on recursive ancestor workloads, while flat full-enumeration workloads are already dominated by result materialisation.
+
+Reproduce the sample:
+
+```bash
+dotnet run --project tests/FsLogical.Benchmarks/FsLogical.Benchmarks.fsproj -c Release -- -j short -m --join -f '*.SolverBenchmarks.SolveFanOutAll' '*.SolverBenchmarks.SolveFanOutAllIndexed' '*.AncestorBenchmarks.FindAllDescendants' '*.AncestorBenchmarks.FindAllDescendantsIndexed'
 ```

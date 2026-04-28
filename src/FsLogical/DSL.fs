@@ -10,7 +10,7 @@ open FsLogical.Solver
 
 // ── Term construction helpers ──────────────────────────────────────────────
 
-let mutable private wildCounter = 0
+let mutable private wildCounter = 0L
 
 /// Create an anonymous wildcard variable. Each call returns a distinct variable,
 /// so all wildcards in a query are independent of each other.
@@ -21,7 +21,7 @@ let wild () =
 // ── Operators re-exported for convenience ────────────────────────────────
 
 /// Build a Compound term:  "parent" /@ [atom "john"; atom "mary"]
-let inline (/@ ) (name: string) (args: Term list) = Compound(name, args)
+let inline (/@ ) (name: string) (args: Term list) = normalize (Compound(name, args))
 
 /// Build a Rule clause:   head |- [body1; body2]
 let inline (|-) head body = rule head body
@@ -43,6 +43,7 @@ type DatabaseBuilder() =
     member _.Yield(clause: Clause) : DList<Clause> = DList.singleton clause
     member _.YieldFrom(clauses: Clause list) : DList<Clause> = DList.ofSeq clauses
     member _.Combine(a: DList<Clause>, b: DList<Clause>) : DList<Clause> = DList.append a b
+    // Intentionally eager: logicDB builds a fully materialised database immediately.
     member _.Delay(f: unit -> DList<Clause>) : DList<Clause> = f ()
     member _.Zero() : DList<Clause> = DList.empty
     member _.Run(dl: DList<Clause>) : Database = { Clauses = DList.toList dl }
@@ -95,6 +96,9 @@ type LogicQueryBuilder() =
 
     member _.Combine(a: seq<'a>, b: seq<'a>) : seq<'a> = Seq.append a b
 
+    member _.For(values: seq<'a>, f: 'a -> seq<'b>) : seq<'b> =
+        Seq.collect f values
+
     member _.Delay(f: unit -> seq<'a>) : seq<'a> = Seq.delay f
 
 /// The `logicQuery` computation expression builder.
@@ -118,6 +122,7 @@ let (|UnboundVar|_|) (varName: string) (subst: Substitution) =
 /// Active pattern: deconstruct a compound term.
 /// Usage:  match term with Pred "parent" [a; b] -> ...
 let (|Pred|_|) (name: string) (term: Term) =
-    match term with
+    match normalize term with
+    | Atom n when n = name -> Some []
     | Compound(n, args) when n = name -> Some args
     | _ -> None

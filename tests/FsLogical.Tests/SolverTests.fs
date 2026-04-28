@@ -216,6 +216,14 @@ let ``solve returns lazy sequence only compute what needed`` () =
     results |> List.length |> should equal 3
 
 [<Fact>]
+let ``solveN limits the number of returned solutions`` () =
+    let results =
+        solveN 2 familyDB ("parent" /@ [atom "tom"; Var "X"])
+        |> Seq.map (fun sub -> ground "X" sub)
+        |> Seq.toList
+    results |> List.length |> should equal 2
+
+[<Fact>]
 let ``solveAll empty goals returns one empty solution`` () =
     let solutions = solveAll familyDB [] |> Seq.toList
     solutions |> List.length |> should equal 1
@@ -279,3 +287,16 @@ let ``solveAllIndexed returns same results as solveAll`` () =
     let normal = solveAll familyDB goals |> Seq.toList |> List.length
     let indexed = solveAllIndexed idb goals |> Seq.toList |> List.length
     normal |> should equal indexed
+
+[<Fact>]
+let ``solveWithOptions max depth 0 prevents goal resolution`` () =
+    let options = { MaxDepth = 0 }
+    let results = solveWithOptions options familyDB ("parent" /@ [atom "tom"; atom "bob"]) |> Seq.toList
+    results |> should be Empty
+
+[<Fact>]
+let ``solveAllWithOptions still returns empty substitution when there are no goals`` () =
+    let options = { MaxDepth = 0 }
+    let results = solveAllWithOptions options familyDB [] |> Seq.toList
+    results |> List.length |> should equal 1
+    results.[0] |> Subst.isEmpty |> should equal true

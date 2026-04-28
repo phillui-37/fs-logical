@@ -9,6 +9,7 @@
     <Compile Include="UnificationTests.fs" />
     <Compile Include="SolverTests.fs" />
     <Compile Include="DSLTests.fs" />
+    <Compile Include="StressTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

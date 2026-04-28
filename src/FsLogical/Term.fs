@@ -51,13 +51,19 @@ module Subst =
     let add (k: string) (v: Term) (s: Substitution) : Substitution = s.Add(k, v)
 
     /// Try to find a binding in a substitution.
-    /// PersistentHashMap exposes no TryGetValue; ContainsKey + indexer is the idiomatic
-    /// single-pass equivalent given the available API.
+    /// PersistentHashMap exposes no TryGetValue; ContainsKey + indexer means two lookups
+    /// with the current API surface.
     let tryFind (k: string) (s: Substitution) : Term option =
         if s.ContainsKey(k) then Some s.[k] else None
 
     /// Create a substitution from a sequence of key-value pairs.
     let ofSeq (pairs: seq<string * Term>) : Substitution = PersistentHashMap.ofSeq pairs
+
+    /// Convert a substitution into an immutable F# Map for inspection.
+    let toMap (s: Substitution) : Map<string, Term> =
+        s
+        |> Seq.map (fun kvp -> kvp.Key, kvp.Value)
+        |> Map.ofSeq
 
     /// Return the number of bindings.
     let count (s: Substitution) : int = s.Length
@@ -75,8 +81,26 @@ let rule head body = { Head = head; Body = body }
 /// Smart constructor for a database.
 let database clauses = { Clauses = clauses }
 
+/// Normalise term representations used by the public DSL.
+/// Zero-argument compounds are treated as atoms.
+let rec normalize (term: Term) : Term =
+    match term with
+    | Compound(name, []) -> Atom name
+    | Compound(name, args) -> Compound(name, args |> List.map normalize)
+    | other -> other
+
+/// Return true when the term is ground under the supplied substitution.
+let rec isGround (term: Term) (subst: Substitution) : bool =
+    match normalize term with
+    | Var v ->
+        match Subst.tryFind v subst with
+        | Some t -> isGround t subst
+        | None -> false
+    | Atom _ | Integer _ | Float _ -> true
+    | Compound(_, args) -> args |> List.forall (fun arg -> isGround arg subst)
+
 /// Inline operator: "functor" /@ [arg1; arg2] builds a Compound term.
-let inline (/@) (name: string) (args: Term list) = Compound(name, args)
+let inline (/@) (name: string) (args: Term list) = normalize (Compound(name, args))
 
 /// Inline operator: head |- body builds a Rule clause.
 let inline (|-) head body = rule head body

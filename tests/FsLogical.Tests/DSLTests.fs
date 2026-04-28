@@ -227,6 +227,11 @@ let ``Pred with zero args`` () =
     | _ -> failwith "expected Pred empty match"
 
 [<Fact>]
+let ``zero-arity operator result is atom-like`` () =
+    let term = "ready" /@ []
+    term |> should equal (Atom "ready")
+
+[<Fact>]
 let ``logicQuery with return from inner query failure is empty`` () =
     let results =
         logicQuery {
@@ -264,3 +269,18 @@ let ``logicDB builds indexed database correctly`` () =
     idb.Index |> Map.containsKey ("ancestor", 2) |> should equal true
     idb.Index.[("parent", 2)] |> List.length |> should equal 4
     idb.Index.[("ancestor", 2)] |> List.length |> should equal 2
+
+[<Fact>]
+let ``logicQuery supports for loops`` () =
+    let results =
+        logicQuery {
+            for parent in [atom "tom"; atom "bob"] do
+                let! sub = query family ("parent" /@ [parent; Var "Child"])
+                return valueOf "Child" sub
+        }
+        |> Seq.toList
+    results |> List.length |> should equal 4
+    results |> should contain (atom "bob")
+    results |> should contain (atom "liz")
+    results |> should contain (atom "ann")
+    results |> should contain (atom "pat")

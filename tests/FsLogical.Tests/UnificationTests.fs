@@ -234,6 +234,10 @@ let ``unify partial match one arg matches one doesn't`` () =
     let result = unifyFresh ("f" /@ [Atom "a"; Var "X"]) ("f" /@ [Atom "a"; Atom "b"])
     result |> assertSubstMatches [("X", Atom "b")]
 
+[<Fact>]
+let ``zero-arity compounds are normalised to atoms`` () =
+    "flag" /@ [] |> should equal (Atom "flag")
+
 // ── occursIn tests ────────────────────────────────────────────────────────
 
 [<Fact>]
@@ -270,3 +274,17 @@ let ``applySubst returns atoms unchanged`` () =
 [<Fact>]
 let ``applySubst returns integers unchanged`` () =
     applySubst emptySubst (Integer 99) |> should equal (Integer 99)
+
+[<Fact>]
+let ``isGround returns true when all variables are bound`` () =
+    let subst = mkSubst [("X", Atom "left")]
+    isGround ("pair" /@ [Var "X"; Atom "right"]) subst |> should equal true
+
+[<Fact>]
+let ``isGround returns false when a variable is still unbound`` () =
+    isGround ("pair" /@ [Var "X"; Atom "right"]) emptySubst |> should equal false
+
+[<Fact>]
+let ``Subst.toMap converts bindings for inspection`` () =
+    let subst = mkSubst [("X", Atom "left"); ("Y", Integer 2)]
+    Subst.toMap subst |> should equal (Map.ofList [("X", Atom "left"); ("Y", Integer 2)])

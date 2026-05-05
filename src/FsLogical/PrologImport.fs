@@ -311,8 +311,7 @@ type private Parser(tokens: Tok array) =
             args.Add(this.ParseTerm())
         Seq.toList args
 
-    /// List literal starting at '[' (already consumed when this is called…
-    /// actually, LBracket has NOT been consumed yet).
+    /// List literal starting at '[' (LBracket has NOT been consumed yet).
     member this.ParseList() : Term =
         this.Advance()   // consume '['
         if this.Current = Tok.RBracket then

@@ -366,5 +366,5 @@ let main _ =
         printfn "All AOT tests passed."
         0
     else
-        printfn $"{failures} test(s) FAILED."
+        printfn "%d test(s) FAILED." failures
         1

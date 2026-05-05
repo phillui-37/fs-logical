@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkRun-joined-2026-05-05-04-50-57</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.4 LTS (Noble Numbat)
+AMD EPYC 9V74 2.86GHz, 1 CPU, 4 logical and 2 physical cores
+.NET SDK 10.0.201
+  [Host]    : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3 DEBUG
+  NativeAOT : .NET 10.0.5, X64 NativeAOT x86-64-v3
+  ShortRun  : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Type        </th><th>Method                                         </th><th>Job</th><th>Toolchain  </th><th>IterationCount</th><th>LaunchCount</th><th>WarmupCount</th><th>ChainDepth</th><th>DatabaseSize</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Gen0</th><th>Gen1</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>5</td><td>?</td><td>67.35 &mu;s</td><td>0.380 &mu;s</td><td>0.355 &mu;s</td><td>8.1787</td><td>0.2441</td><td>133.62 KB</td>
+</tr><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>5</td><td>?</td><td>68.67 &mu;s</td><td>6.217 &mu;s</td><td>0.341 &mu;s</td><td>8.0566</td><td>0.2441</td><td>133.14 KB</td>
+</tr><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>10</td><td>?</td><td>179.16 &mu;s</td><td>0.655 &mu;s</td><td>0.581 &mu;s</td><td>22.4609</td><td>1.2207</td><td>370.29 KB</td>
+</tr><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>10</td><td>?</td><td>187.67 &mu;s</td><td>36.825 &mu;s</td><td>2.018 &mu;s</td><td>22.4609</td><td>1.4648</td><td>369.41 KB</td>
+</tr><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>20</td><td>?</td><td>534.21 &mu;s</td><td>10.104 &mu;s</td><td>9.451 &mu;s</td><td>70.3125</td><td>7.8125</td><td>1151.36 KB</td>
+</tr><tr><td>AncestorBenchmarks</td><td>&#39;ancestor - find all descendants (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>20</td><td>?</td><td>555.32 &mu;s</td><td>124.550 &mu;s</td><td>6.827 &mu;s</td><td>70.3125</td><td>8.7891</td><td>1149.65 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>?</td><td>50</td><td>34.89 &mu;s</td><td>0.400 &mu;s</td><td>0.374 &mu;s</td><td>5.4932</td><td>0.2441</td><td>90.13 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>?</td><td>50</td><td>37.24 &mu;s</td><td>4.074 &mu;s</td><td>0.223 &mu;s</td><td>5.4932</td><td>0.2441</td><td>90.13 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>?</td><td>200</td><td>138.94 &mu;s</td><td>0.698 &mu;s</td><td>0.583 &mu;s</td><td>21.7285</td><td>3.4180</td><td>357.32 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>?</td><td>200</td><td>139.78 &mu;s</td><td>12.258 &mu;s</td><td>0.672 &mu;s</td><td>21.7285</td><td>3.4180</td><td>357.32 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>NativeAOT</td><td>ILCompiler 10.0.5</td><td>Default</td><td>Default</td><td>Default</td><td>?</td><td>1000</td><td>748.41 &mu;s</td><td>7.496 &mu;s</td><td>7.012 &mu;s</td><td>108.3984</td><td>53.7109</td><td>1782.32 KB</td>
+</tr><tr><td>SolverBenchmarks</td><td>&#39;solve - enumerate all from fan-out DB (non-indexed)&#39;</td><td>ShortRun</td><td>Default</td><td>3</td><td>1</td><td>3</td><td>?</td><td>1000</td><td>730.19 &mu;s</td><td>88.958 &mu;s</td><td>4.876 &mu;s</td><td>108.3984</td><td>53.7109</td><td>1782.32 KB</td>
+</tr></tbody></table>
+</body>
+</html>

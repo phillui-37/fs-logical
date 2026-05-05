@@ -210,12 +210,12 @@ type private Parser(tokens: Tok array) =
 
     member this.Eat(expected: Tok) =
         if this.Current = expected then this.Advance()
-        else raise (ParseError(sprintf "Expected %A but got %A" expected this.Current))
+        else raise (ParseError($"Expected {expected} but got {this.Current}"))
 
     /// Create a fresh anonymous variable name.
     member _.FreshAnon() =
         anonIdx <- anonIdx + 1L
-        Var(sprintf "_G%d" anonIdx)
+        Var $"_G{anonIdx}"
 
     /// True when `tok` can legally begin a term.
     member _.CouldStartTerm(tok: Tok) =
@@ -299,7 +299,7 @@ type private Parser(tokens: Tok array) =
         | Tok.LBracket ->
             this.ParseList()
 
-        | tok -> raise (ParseError(sprintf "Unexpected token in term position: %A" tok))
+        | tok -> raise (ParseError($"Unexpected token in term position: {tok}"))
 
     /// Comma-separated argument list inside f(…).  Commas here are separators,
     /// not conjunction operators, so each arg is parsed as a full term.

@@ -1,0 +1,1329 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 12 benchmark(s) in total *****
+// ***** Building 2 exe(s) in Parallel: Start   *****
+// ***** Done, took 00:01:42 (102.61 sec)   *****
+// Found 6 benchmarks:
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=50]
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=50]
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=200]
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=200]
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=1000]
+//   SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=1000]
+
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=50]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 50)" --job NativeAOT --benchmarkId 0 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 691.00 ns, 691.0000 ns/op
+WorkloadJitting  1: 1 op, 497428.00 ns, 497.4280 us/op
+
+OverheadJitting  2: 16 op, 291.00 ns, 18.1875 ns/op
+WorkloadJitting  2: 16 op, 1525825.00 ns, 95.3641 us/op
+
+WorkloadPilot    1: 16 op, 1476611.00 ns, 92.2882 us/op
+WorkloadPilot    2: 32 op, 2198736.00 ns, 68.7105 us/op
+WorkloadPilot    3: 64 op, 5139358.00 ns, 80.3025 us/op
+WorkloadPilot    4: 128 op, 10458708.00 ns, 81.7087 us/op
+WorkloadPilot    5: 256 op, 14269018.00 ns, 55.7384 us/op
+WorkloadPilot    6: 512 op, 18048111.00 ns, 35.2502 us/op
+WorkloadPilot    7: 1024 op, 35913397.00 ns, 35.0717 us/op
+WorkloadPilot    8: 2048 op, 78094765.00 ns, 38.1322 us/op
+WorkloadPilot    9: 4096 op, 143408791.00 ns, 35.0119 us/op
+WorkloadPilot   10: 8192 op, 289826196.00 ns, 35.3792 us/op
+WorkloadPilot   11: 16384 op, 565938110.00 ns, 34.5421 us/op
+
+OverheadWarmup   1: 16384 op, 24437.00 ns, 1.4915 ns/op
+OverheadWarmup   2: 16384 op, 24566.00 ns, 1.4994 ns/op
+OverheadWarmup   3: 16384 op, 24537.00 ns, 1.4976 ns/op
+OverheadWarmup   4: 16384 op, 24537.00 ns, 1.4976 ns/op
+OverheadWarmup   5: 16384 op, 24527.00 ns, 1.4970 ns/op
+
+OverheadActual   1: 16384 op, 24567.00 ns, 1.4995 ns/op
+OverheadActual   2: 16384 op, 24527.00 ns, 1.4970 ns/op
+OverheadActual   3: 16384 op, 24116.00 ns, 1.4719 ns/op
+OverheadActual   4: 16384 op, 24086.00 ns, 1.4701 ns/op
+OverheadActual   5: 16384 op, 24157.00 ns, 1.4744 ns/op
+OverheadActual   6: 16384 op, 24096.00 ns, 1.4707 ns/op
+OverheadActual   7: 16384 op, 24076.00 ns, 1.4695 ns/op
+OverheadActual   8: 16384 op, 24146.00 ns, 1.4738 ns/op
+OverheadActual   9: 16384 op, 24086.00 ns, 1.4701 ns/op
+OverheadActual  10: 16384 op, 24146.00 ns, 1.4738 ns/op
+OverheadActual  11: 16384 op, 24137.00 ns, 1.4732 ns/op
+OverheadActual  12: 16384 op, 24146.00 ns, 1.4738 ns/op
+OverheadActual  13: 16384 op, 24106.00 ns, 1.4713 ns/op
+OverheadActual  14: 16384 op, 24107.00 ns, 1.4714 ns/op
+OverheadActual  15: 16384 op, 24166.00 ns, 1.4750 ns/op
+
+WorkloadWarmup   1: 16384 op, 585320331.00 ns, 35.7251 us/op
+WorkloadWarmup   2: 16384 op, 578813075.00 ns, 35.3279 us/op
+WorkloadWarmup   3: 16384 op, 581465454.00 ns, 35.4898 us/op
+WorkloadWarmup   4: 16384 op, 570924423.00 ns, 34.8465 us/op
+WorkloadWarmup   5: 16384 op, 584338514.00 ns, 35.6652 us/op
+WorkloadWarmup   6: 16384 op, 570224319.00 ns, 34.8037 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 16384 op, 565979347.00 ns, 34.5446 us/op
+WorkloadActual   2: 16384 op, 566173498.00 ns, 34.5565 us/op
+WorkloadActual   3: 16384 op, 565563221.00 ns, 34.5192 us/op
+WorkloadActual   4: 16384 op, 565801769.00 ns, 34.5338 us/op
+WorkloadActual   5: 16384 op, 582242132.00 ns, 35.5372 us/op
+WorkloadActual   6: 16384 op, 574393870.00 ns, 35.0582 us/op
+WorkloadActual   7: 16384 op, 580187032.00 ns, 35.4118 us/op
+WorkloadActual   8: 16384 op, 570969143.00 ns, 34.8492 us/op
+WorkloadActual   9: 16384 op, 578303730.00 ns, 35.2969 us/op
+WorkloadActual  10: 16384 op, 570365902.00 ns, 34.8124 us/op
+WorkloadActual  11: 16384 op, 581771404.00 ns, 35.5085 us/op
+WorkloadActual  12: 16384 op, 568569742.00 ns, 34.7027 us/op
+WorkloadActual  13: 16384 op, 567399713.00 ns, 34.6313 us/op
+WorkloadActual  14: 16384 op, 567086622.00 ns, 34.6122 us/op
+WorkloadActual  15: 16384 op, 570002978.00 ns, 34.7902 us/op
+
+// AfterActualRun
+WorkloadResult   1: 16384 op, 565955210.00 ns, 34.5432 us/op
+WorkloadResult   2: 16384 op, 566149361.00 ns, 34.5550 us/op
+WorkloadResult   3: 16384 op, 565539084.00 ns, 34.5178 us/op
+WorkloadResult   4: 16384 op, 565777632.00 ns, 34.5323 us/op
+WorkloadResult   5: 16384 op, 582217995.00 ns, 35.5358 us/op
+WorkloadResult   6: 16384 op, 574369733.00 ns, 35.0567 us/op
+WorkloadResult   7: 16384 op, 580162895.00 ns, 35.4103 us/op
+WorkloadResult   8: 16384 op, 570945006.00 ns, 34.8477 us/op
+WorkloadResult   9: 16384 op, 578279593.00 ns, 35.2954 us/op
+WorkloadResult  10: 16384 op, 570341765.00 ns, 34.8109 us/op
+WorkloadResult  11: 16384 op, 581747267.00 ns, 35.5070 us/op
+WorkloadResult  12: 16384 op, 568545605.00 ns, 34.7013 us/op
+WorkloadResult  13: 16384 op, 567375576.00 ns, 34.6299 us/op
+WorkloadResult  14: 16384 op, 567062485.00 ns, 34.6107 us/op
+WorkloadResult  15: 16384 op, 569978841.00 ns, 34.7887 us/op
+// GC:  90 4 0 1512178336 16384
+// Threading:  0 0 16384
+
+// AfterAll
+// Benchmark Process 11232 has exited with code 0.
+
+Mean = 34.890 μs, StdErr = 0.097 μs (0.28%), N = 15, StdDev = 0.374 μs
+Min = 34.518 μs, Q1 = 34.583 μs, Median = 34.789 μs, Q3 = 35.176 μs, Max = 35.536 μs
+IQR = 0.593 μs, LowerFence = 33.693 μs, UpperFence = 36.066 μs
+ConfidenceInterval = [34.490 μs; 35.289 μs] (CI 99.9%), Margin = 0.400 μs (1.15% of Mean)
+Skewness = 0.63, Kurtosis = 1.69, MValue = 2
+
+// ** Remained 11 (91.7 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 2m from now) **
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=50]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 50)" --job ShortRun --benchmarkId 0 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 205679.00 ns, 205.6790 us/op
+WorkloadJitting  1: 1 op, 29930218.00 ns, 29.9302 ms/op
+
+OverheadJitting  2: 16 op, 229806.00 ns, 14.3629 us/op
+WorkloadJitting  2: 16 op, 2929455.00 ns, 183.0909 us/op
+
+WorkloadPilot    1: 16 op, 2408752.00 ns, 150.5470 us/op
+WorkloadPilot    2: 32 op, 4496552.00 ns, 140.5173 us/op
+WorkloadPilot    3: 64 op, 9737933.00 ns, 152.1552 us/op
+WorkloadPilot    4: 128 op, 19685242.00 ns, 153.7910 us/op
+WorkloadPilot    5: 256 op, 31671707.00 ns, 123.7176 us/op
+WorkloadPilot    6: 512 op, 51612283.00 ns, 100.8052 us/op
+WorkloadPilot    7: 1024 op, 148340031.00 ns, 144.8633 us/op
+WorkloadPilot    8: 2048 op, 84245807.00 ns, 41.1356 us/op
+WorkloadPilot    9: 4096 op, 145924518.00 ns, 35.6261 us/op
+WorkloadPilot   10: 8192 op, 295380386.00 ns, 36.0572 us/op
+WorkloadPilot   11: 16384 op, 600936464.00 ns, 36.6783 us/op
+
+OverheadWarmup   1: 16384 op, 49475.00 ns, 3.0197 ns/op
+OverheadWarmup   2: 16384 op, 47451.00 ns, 2.8962 ns/op
+OverheadWarmup   3: 16384 op, 47531.00 ns, 2.9011 ns/op
+OverheadWarmup   4: 16384 op, 47531.00 ns, 2.9011 ns/op
+OverheadWarmup   5: 16384 op, 48122.00 ns, 2.9371 ns/op
+OverheadWarmup   6: 16384 op, 47512.00 ns, 2.8999 ns/op
+
+OverheadActual   1: 16384 op, 47662.00 ns, 2.9091 ns/op
+OverheadActual   2: 16384 op, 47922.00 ns, 2.9249 ns/op
+OverheadActual   3: 16384 op, 48022.00 ns, 2.9310 ns/op
+OverheadActual   4: 16384 op, 47681.00 ns, 2.9102 ns/op
+OverheadActual   5: 16384 op, 47651.00 ns, 2.9084 ns/op
+OverheadActual   6: 16384 op, 47502.00 ns, 2.8993 ns/op
+OverheadActual   7: 16384 op, 48372.00 ns, 2.9524 ns/op
+OverheadActual   8: 16384 op, 47511.00 ns, 2.8998 ns/op
+OverheadActual   9: 16384 op, 47491.00 ns, 2.8986 ns/op
+OverheadActual  10: 16384 op, 47491.00 ns, 2.8986 ns/op
+OverheadActual  11: 16384 op, 51407.00 ns, 3.1376 ns/op
+OverheadActual  12: 16384 op, 47541.00 ns, 2.9017 ns/op
+OverheadActual  13: 16384 op, 47621.00 ns, 2.9066 ns/op
+OverheadActual  14: 16384 op, 47532.00 ns, 2.9011 ns/op
+OverheadActual  15: 16384 op, 47952.00 ns, 2.9268 ns/op
+
+WorkloadWarmup   1: 16384 op, 615290529.00 ns, 37.5544 us/op
+WorkloadWarmup   2: 16384 op, 617633422.00 ns, 37.6974 us/op
+WorkloadWarmup   3: 16384 op, 608706125.00 ns, 37.1525 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 16384 op, 606833621.00 ns, 37.0382 us/op
+WorkloadActual   2: 16384 op, 609734162.00 ns, 37.2152 us/op
+WorkloadActual   3: 16384 op, 614101690.00 ns, 37.4818 us/op
+
+// AfterActualRun
+WorkloadResult   1: 16384 op, 606785970.00 ns, 37.0353 us/op
+WorkloadResult   2: 16384 op, 609686511.00 ns, 37.2123 us/op
+WorkloadResult   3: 16384 op, 614054039.00 ns, 37.4789 us/op
+// GC:  90 4 0 1512177664 16384
+// Threading:  0 0 16384
+
+// AfterAll
+// Benchmark Process 11245 has exited with code 0.
+
+Mean = 37.242 μs, StdErr = 0.129 μs (0.35%), N = 3, StdDev = 0.223 μs
+Min = 37.035 μs, Q1 = 37.124 μs, Median = 37.212 μs, Q3 = 37.346 μs, Max = 37.479 μs
+IQR = 0.222 μs, LowerFence = 36.791 μs, UpperFence = 37.678 μs
+ConfidenceInterval = [33.168 μs; 41.316 μs] (CI 99.9%), Margin = 4.074 μs (10.94% of Mean)
+Skewness = 0.13, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 10 (83.3 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 1m from now) **
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=200]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 200)" --job NativeAOT --benchmarkId 1 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 421.00 ns, 421.0000 ns/op
+WorkloadJitting  1: 1 op, 759141.00 ns, 759.1410 us/op
+
+OverheadJitting  2: 16 op, 310.00 ns, 19.3750 ns/op
+WorkloadJitting  2: 16 op, 5975496.00 ns, 373.4685 us/op
+
+WorkloadPilot    1: 16 op, 4805226.00 ns, 300.3266 us/op
+WorkloadPilot    2: 32 op, 9317311.00 ns, 291.1660 us/op
+WorkloadPilot    3: 64 op, 13929808.00 ns, 217.6533 us/op
+WorkloadPilot    4: 128 op, 17953438.00 ns, 140.2612 us/op
+WorkloadPilot    5: 256 op, 36339747.00 ns, 141.9521 us/op
+WorkloadPilot    6: 512 op, 71400301.00 ns, 139.4537 us/op
+WorkloadPilot    7: 1024 op, 150296499.00 ns, 146.7739 us/op
+WorkloadPilot    8: 2048 op, 283090359.00 ns, 138.2277 us/op
+WorkloadPilot    9: 4096 op, 576398503.00 ns, 140.7223 us/op
+
+OverheadWarmup   1: 4096 op, 10445.00 ns, 2.5500 ns/op
+OverheadWarmup   2: 4096 op, 7471.00 ns, 1.8240 ns/op
+OverheadWarmup   3: 4096 op, 7421.00 ns, 1.8118 ns/op
+OverheadWarmup   4: 4096 op, 7842.00 ns, 1.9146 ns/op
+OverheadWarmup   5: 4096 op, 10586.00 ns, 2.5845 ns/op
+OverheadWarmup   6: 4096 op, 7211.00 ns, 1.7605 ns/op
+OverheadWarmup   7: 4096 op, 7511.00 ns, 1.8337 ns/op
+OverheadWarmup   8: 4096 op, 7291.00 ns, 1.7800 ns/op
+
+OverheadActual   1: 4096 op, 7090.00 ns, 1.7310 ns/op
+OverheadActual   2: 4096 op, 7361.00 ns, 1.7971 ns/op
+OverheadActual   3: 4096 op, 7211.00 ns, 1.7605 ns/op
+OverheadActual   4: 4096 op, 6970.00 ns, 1.7017 ns/op
+OverheadActual   5: 4096 op, 7271.00 ns, 1.7751 ns/op
+OverheadActual   6: 4096 op, 6290.00 ns, 1.5356 ns/op
+OverheadActual   7: 4096 op, 6200.00 ns, 1.5137 ns/op
+OverheadActual   8: 4096 op, 6049.00 ns, 1.4768 ns/op
+OverheadActual   9: 4096 op, 6099.00 ns, 1.4890 ns/op
+OverheadActual  10: 4096 op, 6140.00 ns, 1.4990 ns/op
+OverheadActual  11: 4096 op, 6079.00 ns, 1.4841 ns/op
+OverheadActual  12: 4096 op, 6179.00 ns, 1.5085 ns/op
+OverheadActual  13: 4096 op, 6089.00 ns, 1.4866 ns/op
+OverheadActual  14: 4096 op, 6129.00 ns, 1.4963 ns/op
+OverheadActual  15: 4096 op, 6230.00 ns, 1.5210 ns/op
+OverheadActual  16: 4096 op, 6190.00 ns, 1.5112 ns/op
+OverheadActual  17: 4096 op, 6109.00 ns, 1.4915 ns/op
+OverheadActual  18: 4096 op, 6199.00 ns, 1.5134 ns/op
+OverheadActual  19: 4096 op, 6129.00 ns, 1.4963 ns/op
+OverheadActual  20: 4096 op, 6159.00 ns, 1.5037 ns/op
+
+WorkloadWarmup   1: 4096 op, 586821046.00 ns, 143.2669 us/op
+WorkloadWarmup   2: 4096 op, 589354665.00 ns, 143.8854 us/op
+WorkloadWarmup   3: 4096 op, 570213471.00 ns, 139.2123 us/op
+WorkloadWarmup   4: 4096 op, 565829269.00 ns, 138.1419 us/op
+WorkloadWarmup   5: 4096 op, 572352208.00 ns, 139.7344 us/op
+WorkloadWarmup   6: 4096 op, 566839137.00 ns, 138.3885 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 565913192.00 ns, 138.1624 us/op
+WorkloadActual   2: 4096 op, 570459997.00 ns, 139.2725 us/op
+WorkloadActual   3: 4096 op, 567773736.00 ns, 138.6166 us/op
+WorkloadActual   4: 4096 op, 569658501.00 ns, 139.0768 us/op
+WorkloadActual   5: 4096 op, 573293316.00 ns, 139.9642 us/op
+WorkloadActual   6: 4096 op, 577025890.00 ns, 140.8755 us/op
+WorkloadActual   7: 4096 op, 576786890.00 ns, 140.8171 us/op
+WorkloadActual   8: 4096 op, 568366599.00 ns, 138.7614 us/op
+WorkloadActual   9: 4096 op, 569366182.00 ns, 139.0054 us/op
+WorkloadActual  10: 4096 op, 564275817.00 ns, 137.7627 us/op
+WorkloadActual  11: 4096 op, 571492448.00 ns, 139.5245 us/op
+WorkloadActual  12: 4096 op, 571087389.00 ns, 139.4256 us/op
+WorkloadActual  13: 4096 op, 568697797.00 ns, 138.8422 us/op
+WorkloadActual  14: 4096 op, 567808279.00 ns, 138.6251 us/op
+WorkloadActual  15: 4096 op, 570278225.00 ns, 139.2281 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 565907007.50 ns, 138.1609 us/op
+WorkloadResult   2: 4096 op, 570453812.50 ns, 139.2710 us/op
+WorkloadResult   3: 4096 op, 567767551.50 ns, 138.6151 us/op
+WorkloadResult   4: 4096 op, 569652316.50 ns, 139.0753 us/op
+WorkloadResult   5: 4096 op, 573287131.50 ns, 139.9627 us/op
+WorkloadResult   6: 4096 op, 568360414.50 ns, 138.7599 us/op
+WorkloadResult   7: 4096 op, 569359997.50 ns, 139.0039 us/op
+WorkloadResult   8: 4096 op, 564269632.50 ns, 137.7611 us/op
+WorkloadResult   9: 4096 op, 571486263.50 ns, 139.5230 us/op
+WorkloadResult  10: 4096 op, 571081204.50 ns, 139.4241 us/op
+WorkloadResult  11: 4096 op, 568691612.50 ns, 138.8407 us/op
+WorkloadResult  12: 4096 op, 567802094.50 ns, 138.6236 us/op
+WorkloadResult  13: 4096 op, 570272040.50 ns, 139.2266 us/op
+// GC:  89 14 0 1498710688 4096
+// Threading:  0 0 4096
+
+// AfterAll
+// Benchmark Process 11256 has exited with code 0.
+
+Mean = 138.942 μs, StdErr = 0.162 μs (0.12%), N = 13, StdDev = 0.583 μs
+Min = 137.761 μs, Q1 = 138.624 μs, Median = 139.004 μs, Q3 = 139.271 μs, Max = 139.963 μs
+IQR = 0.647 μs, LowerFence = 137.652 μs, UpperFence = 140.242 μs
+ConfidenceInterval = [138.244 μs; 139.640 μs] (CI 99.9%), Margin = 0.698 μs (0.50% of Mean)
+Skewness = -0.3, Kurtosis = 2.4, MValue = 2
+
+// ** Remained 9 (75.0 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 1m from now) **
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=200]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 200)" --job ShortRun --benchmarkId 1 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 203116.00 ns, 203.1160 us/op
+WorkloadJitting  1: 1 op, 30557741.00 ns, 30.5577 ms/op
+
+OverheadJitting  2: 16 op, 200011.00 ns, 12.5007 us/op
+WorkloadJitting  2: 16 op, 10356954.00 ns, 647.3096 us/op
+
+WorkloadPilot    1: 16 op, 9107035.00 ns, 569.1897 us/op
+WorkloadPilot    2: 32 op, 17763972.00 ns, 555.1241 us/op
+WorkloadPilot    3: 64 op, 31072875.00 ns, 485.5137 us/op
+WorkloadPilot    4: 128 op, 51067542.00 ns, 398.9652 us/op
+WorkloadPilot    5: 256 op, 143285115.00 ns, 559.7075 us/op
+WorkloadPilot    6: 512 op, 95112566.00 ns, 185.7667 us/op
+WorkloadPilot    7: 1024 op, 140807449.00 ns, 137.5073 us/op
+WorkloadPilot    8: 2048 op, 284320877.00 ns, 138.8286 us/op
+WorkloadPilot    9: 4096 op, 569413636.00 ns, 139.0170 us/op
+
+OverheadWarmup   1: 4096 op, 20161.00 ns, 4.9221 ns/op
+OverheadWarmup   2: 4096 op, 19330.00 ns, 4.7192 ns/op
+OverheadWarmup   3: 4096 op, 19349.00 ns, 4.7239 ns/op
+OverheadWarmup   4: 4096 op, 19569.00 ns, 4.7776 ns/op
+OverheadWarmup   5: 4096 op, 19409.00 ns, 4.7385 ns/op
+OverheadWarmup   6: 4096 op, 36065.00 ns, 8.8049 ns/op
+OverheadWarmup   7: 4096 op, 19028.00 ns, 4.6455 ns/op
+
+OverheadActual   1: 4096 op, 19449.00 ns, 4.7483 ns/op
+OverheadActual   2: 4096 op, 19529.00 ns, 4.7678 ns/op
+OverheadActual   3: 4096 op, 19309.00 ns, 4.7141 ns/op
+OverheadActual   4: 4096 op, 19289.00 ns, 4.7092 ns/op
+OverheadActual   5: 4096 op, 19239.00 ns, 4.6970 ns/op
+OverheadActual   6: 4096 op, 19359.00 ns, 4.7263 ns/op
+OverheadActual   7: 4096 op, 19259.00 ns, 4.7019 ns/op
+OverheadActual   8: 4096 op, 19329.00 ns, 4.7190 ns/op
+OverheadActual   9: 4096 op, 19249.00 ns, 4.6995 ns/op
+OverheadActual  10: 4096 op, 19739.00 ns, 4.8191 ns/op
+OverheadActual  11: 4096 op, 18848.00 ns, 4.6016 ns/op
+OverheadActual  12: 4096 op, 19449.00 ns, 4.7483 ns/op
+OverheadActual  13: 4096 op, 19258.00 ns, 4.7017 ns/op
+OverheadActual  14: 4096 op, 19168.00 ns, 4.6797 ns/op
+OverheadActual  15: 4096 op, 19158.00 ns, 4.6772 ns/op
+
+WorkloadWarmup   1: 4096 op, 581229042.00 ns, 141.9016 us/op
+WorkloadWarmup   2: 4096 op, 581952191.00 ns, 142.0782 us/op
+WorkloadWarmup   3: 4096 op, 574414356.00 ns, 140.2379 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 569384322.00 ns, 139.0098 us/op
+WorkloadActual   2: 4096 op, 574211800.00 ns, 140.1884 us/op
+WorkloadActual   3: 4096 op, 574088255.00 ns, 140.1583 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 569365033.00 ns, 139.0051 us/op
+WorkloadResult   2: 4096 op, 574192511.00 ns, 140.1837 us/op
+WorkloadResult   3: 4096 op, 574068966.00 ns, 140.1536 us/op
+// GC:  89 14 0 1498710016 4096
+// Threading:  0 0 4096
+
+// AfterAll
+// Benchmark Process 11262 has exited with code 0.
+
+Mean = 139.781 μs, StdErr = 0.388 μs (0.28%), N = 3, StdDev = 0.672 μs
+Min = 139.005 μs, Q1 = 139.579 μs, Median = 140.154 μs, Q3 = 140.169 μs, Max = 140.184 μs
+IQR = 0.589 μs, LowerFence = 138.695 μs, UpperFence = 141.053 μs
+ConfidenceInterval = [127.523 μs; 152.039 μs] (CI 99.9%), Margin = 12.258 μs (8.77% of Mean)
+Skewness = -0.38, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 8 (66.7 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 1m from now) **
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 1000)" --job NativeAOT --benchmarkId 2 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 171.00 ns, 171.0000 ns/op
+WorkloadJitting  1: 1 op, 2280199.00 ns, 2.2802 ms/op
+
+OverheadJitting  2: 16 op, 320.00 ns, 20.0000 ns/op
+WorkloadJitting  2: 16 op, 22286704.00 ns, 1.3929 ms/op
+
+WorkloadPilot    1: 16 op, 16490538.00 ns, 1.0307 ms/op
+WorkloadPilot    2: 32 op, 25777813.00 ns, 805.5567 us/op
+WorkloadPilot    3: 64 op, 47340028.00 ns, 739.6879 us/op
+WorkloadPilot    4: 128 op, 93912711.00 ns, 733.6931 us/op
+WorkloadPilot    5: 256 op, 191066557.00 ns, 746.3537 us/op
+WorkloadPilot    6: 512 op, 386976746.00 ns, 755.8140 us/op
+WorkloadPilot    7: 1024 op, 764717454.00 ns, 746.7944 us/op
+
+OverheadWarmup   1: 1024 op, 2043.00 ns, 1.9951 ns/op
+OverheadWarmup   2: 1024 op, 1752.00 ns, 1.7109 ns/op
+OverheadWarmup   3: 1024 op, 1782.00 ns, 1.7402 ns/op
+OverheadWarmup   4: 1024 op, 1763.00 ns, 1.7217 ns/op
+OverheadWarmup   5: 1024 op, 1762.00 ns, 1.7207 ns/op
+OverheadWarmup   6: 1024 op, 1772.00 ns, 1.7305 ns/op
+OverheadWarmup   7: 1024 op, 1773.00 ns, 1.7314 ns/op
+OverheadWarmup   8: 1024 op, 1763.00 ns, 1.7217 ns/op
+
+OverheadActual   1: 1024 op, 1793.00 ns, 1.7510 ns/op
+OverheadActual   2: 1024 op, 1763.00 ns, 1.7217 ns/op
+OverheadActual   3: 1024 op, 1783.00 ns, 1.7412 ns/op
+OverheadActual   4: 1024 op, 1782.00 ns, 1.7402 ns/op
+OverheadActual   5: 1024 op, 1753.00 ns, 1.7119 ns/op
+OverheadActual   6: 1024 op, 1753.00 ns, 1.7119 ns/op
+OverheadActual   7: 1024 op, 1753.00 ns, 1.7119 ns/op
+OverheadActual   8: 1024 op, 1753.00 ns, 1.7119 ns/op
+OverheadActual   9: 1024 op, 1762.00 ns, 1.7207 ns/op
+OverheadActual  10: 1024 op, 1783.00 ns, 1.7412 ns/op
+OverheadActual  11: 1024 op, 2123.00 ns, 2.0732 ns/op
+OverheadActual  12: 1024 op, 1752.00 ns, 1.7109 ns/op
+OverheadActual  13: 1024 op, 1783.00 ns, 1.7412 ns/op
+OverheadActual  14: 1024 op, 1762.00 ns, 1.7207 ns/op
+OverheadActual  15: 1024 op, 1753.00 ns, 1.7119 ns/op
+
+WorkloadWarmup   1: 1024 op, 778815032.00 ns, 760.5616 us/op
+WorkloadWarmup   2: 1024 op, 763261091.00 ns, 745.3722 us/op
+WorkloadWarmup   3: 1024 op, 777358571.00 ns, 759.1392 us/op
+WorkloadWarmup   4: 1024 op, 774886644.00 ns, 756.7252 us/op
+WorkloadWarmup   5: 1024 op, 773524756.00 ns, 755.3953 us/op
+WorkloadWarmup   6: 1024 op, 773288981.00 ns, 755.1650 us/op
+WorkloadWarmup   7: 1024 op, 751420066.00 ns, 733.8087 us/op
+WorkloadWarmup   8: 1024 op, 769858383.00 ns, 751.8148 us/op
+WorkloadWarmup   9: 1024 op, 761179472.00 ns, 743.3393 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1024 op, 771448785.00 ns, 753.3680 us/op
+WorkloadActual   2: 1024 op, 764179732.00 ns, 746.2693 us/op
+WorkloadActual   3: 1024 op, 772205107.00 ns, 754.1065 us/op
+WorkloadActual   4: 1024 op, 757527389.00 ns, 739.7728 us/op
+WorkloadActual   5: 1024 op, 764025010.00 ns, 746.1182 us/op
+WorkloadActual   6: 1024 op, 774043406.00 ns, 755.9018 us/op
+WorkloadActual   7: 1024 op, 771288754.00 ns, 753.2117 us/op
+WorkloadActual   8: 1024 op, 766192750.00 ns, 748.2351 us/op
+WorkloadActual   9: 1024 op, 770655892.00 ns, 752.5936 us/op
+WorkloadActual  10: 1024 op, 751620817.00 ns, 734.0047 us/op
+WorkloadActual  11: 1024 op, 773019667.00 ns, 754.9020 us/op
+WorkloadActual  12: 1024 op, 768500451.00 ns, 750.4887 us/op
+WorkloadActual  13: 1024 op, 753318953.00 ns, 735.6630 us/op
+WorkloadActual  14: 1024 op, 772220095.00 ns, 754.1212 us/op
+WorkloadActual  15: 1024 op, 765291331.00 ns, 747.3548 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1024 op, 771447023.00 ns, 753.3662 us/op
+WorkloadResult   2: 1024 op, 764177970.00 ns, 746.2675 us/op
+WorkloadResult   3: 1024 op, 772203345.00 ns, 754.1048 us/op
+WorkloadResult   4: 1024 op, 757525627.00 ns, 739.7711 us/op
+WorkloadResult   5: 1024 op, 764023248.00 ns, 746.1165 us/op
+WorkloadResult   6: 1024 op, 774041644.00 ns, 755.9000 us/op
+WorkloadResult   7: 1024 op, 771286992.00 ns, 753.2100 us/op
+WorkloadResult   8: 1024 op, 766190988.00 ns, 748.2334 us/op
+WorkloadResult   9: 1024 op, 770654130.00 ns, 752.5919 us/op
+WorkloadResult  10: 1024 op, 751619055.00 ns, 734.0030 us/op
+WorkloadResult  11: 1024 op, 773017905.00 ns, 754.9003 us/op
+WorkloadResult  12: 1024 op, 768498689.00 ns, 750.4870 us/op
+WorkloadResult  13: 1024 op, 753317191.00 ns, 735.6613 us/op
+WorkloadResult  14: 1024 op, 772218333.00 ns, 754.1195 us/op
+WorkloadResult  15: 1024 op, 765289569.00 ns, 747.3531 us/op
+// GC:  111 55 0 1868898976 1024
+// Threading:  0 0 1024
+
+// AfterAll
+// Benchmark Process 11270 has exited with code 0.
+
+Mean = 748.406 μs, StdErr = 1.811 μs (0.24%), N = 15, StdDev = 7.012 μs
+Min = 734.003 μs, Q1 = 746.192 μs, Median = 750.487 μs, Q3 = 753.736 μs, Max = 755.900 μs
+IQR = 7.544 μs, LowerFence = 734.877 μs, UpperFence = 765.051 μs
+ConfidenceInterval = [740.909 μs; 755.902 μs] (CI 99.9%), Margin = 7.496 μs (1.00% of Mean)
+Skewness = -0.84, Kurtosis = 2.3, MValue = 2
+
+// ** Remained 7 (58.3 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 1m from now) **
+// **************************
+// Benchmark: SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=1000]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+SolverBenchmarks.SolveFanOutAll(DatabaseSize: 1000)" --job ShortRun --benchmarkId 2 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 199631.00 ns, 199.6310 us/op
+WorkloadJitting  1: 1 op, 33074548.00 ns, 33.0745 ms/op
+
+OverheadJitting  2: 16 op, 212690.00 ns, 13.2931 us/op
+WorkloadJitting  2: 16 op, 46290982.00 ns, 2.8932 ms/op
+
+WorkloadPilot    1: 16 op, 40076577.00 ns, 2.5048 ms/op
+WorkloadPilot    2: 32 op, 63400502.00 ns, 1.9813 ms/op
+WorkloadPilot    3: 64 op, 142186170.00 ns, 2.2217 ms/op
+WorkloadPilot    4: 128 op, 175635005.00 ns, 1.3721 ms/op
+WorkloadPilot    5: 256 op, 185848990.00 ns, 725.9726 us/op
+WorkloadPilot    6: 512 op, 374154264.00 ns, 730.7700 us/op
+WorkloadPilot    7: 1024 op, 760959592.00 ns, 743.1246 us/op
+
+OverheadWarmup   1: 1024 op, 5358.00 ns, 5.2324 ns/op
+OverheadWarmup   2: 1024 op, 3446.00 ns, 3.3652 ns/op
+OverheadWarmup   3: 1024 op, 3365.00 ns, 3.2861 ns/op
+OverheadWarmup   4: 1024 op, 3325.00 ns, 3.2471 ns/op
+OverheadWarmup   5: 1024 op, 3375.00 ns, 3.2959 ns/op
+OverheadWarmup   6: 1024 op, 3325.00 ns, 3.2471 ns/op
+OverheadWarmup   7: 1024 op, 3405.00 ns, 3.3252 ns/op
+OverheadWarmup   8: 1024 op, 3325.00 ns, 3.2471 ns/op
+
+OverheadActual   1: 1024 op, 3456.00 ns, 3.3750 ns/op
+OverheadActual   2: 1024 op, 3466.00 ns, 3.3848 ns/op
+OverheadActual   3: 1024 op, 3576.00 ns, 3.4922 ns/op
+OverheadActual   4: 1024 op, 3415.00 ns, 3.3350 ns/op
+OverheadActual   5: 1024 op, 3455.00 ns, 3.3740 ns/op
+OverheadActual   6: 1024 op, 3395.00 ns, 3.3154 ns/op
+OverheadActual   7: 1024 op, 3415.00 ns, 3.3350 ns/op
+OverheadActual   8: 1024 op, 3395.00 ns, 3.3154 ns/op
+OverheadActual   9: 1024 op, 3405.00 ns, 3.3252 ns/op
+OverheadActual  10: 1024 op, 3385.00 ns, 3.3057 ns/op
+OverheadActual  11: 1024 op, 3475.00 ns, 3.3936 ns/op
+OverheadActual  12: 1024 op, 3425.00 ns, 3.3447 ns/op
+OverheadActual  13: 1024 op, 3415.00 ns, 3.3350 ns/op
+OverheadActual  14: 1024 op, 3515.00 ns, 3.4326 ns/op
+OverheadActual  15: 1024 op, 3415.00 ns, 3.3350 ns/op
+
+WorkloadWarmup   1: 1024 op, 762089672.00 ns, 744.2282 us/op
+WorkloadWarmup   2: 1024 op, 754537755.00 ns, 736.8533 us/op
+WorkloadWarmup   3: 1024 op, 746381990.00 ns, 728.8887 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1024 op, 748415418.00 ns, 730.8744 us/op
+WorkloadActual   2: 1024 op, 752326720.00 ns, 734.6941 us/op
+WorkloadActual   3: 1024 op, 742413662.00 ns, 725.0133 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1024 op, 748412003.00 ns, 730.8711 us/op
+WorkloadResult   2: 1024 op, 752323305.00 ns, 734.6907 us/op
+WorkloadResult   3: 1024 op, 742410247.00 ns, 725.0100 us/op
+// GC:  111 55 0 1868898304 1024
+// Threading:  0 0 1024
+
+// AfterAll
+// Benchmark Process 11277 has exited with code 0.
+
+Mean = 730.191 μs, StdErr = 2.815 μs (0.39%), N = 3, StdDev = 4.876 μs
+Min = 725.010 μs, Q1 = 727.941 μs, Median = 730.871 μs, Q3 = 732.781 μs, Max = 734.691 μs
+IQR = 4.840 μs, LowerFence = 720.680 μs, UpperFence = 740.041 μs
+ConfidenceInterval = [641.232 μs; 819.149 μs] (CI 99.9%), Margin = 88.958 μs (12.18% of Mean)
+Skewness = -0.14, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 6 (50.0 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 1m from now) **
+Run time: 00:01:07 (67.53 sec), executed benchmarks: 6
+
+// Found 6 benchmarks:
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=5]
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=5]
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=10]
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=10]
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=20]
+//   AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=20]
+
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 5)" --job NativeAOT --benchmarkId 3 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 160.00 ns, 160.0000 ns/op
+WorkloadJitting  1: 1 op, 584018.00 ns, 584.0180 us/op
+
+OverheadJitting  2: 16 op, 301.00 ns, 18.8125 ns/op
+WorkloadJitting  2: 16 op, 2636825.00 ns, 164.8016 us/op
+
+WorkloadPilot    1: 16 op, 2500080.00 ns, 156.2550 us/op
+WorkloadPilot    2: 32 op, 3590820.00 ns, 112.2131 us/op
+WorkloadPilot    3: 64 op, 8482646.00 ns, 132.5413 us/op
+WorkloadPilot    4: 128 op, 16472391.00 ns, 128.6906 us/op
+WorkloadPilot    5: 256 op, 17405955.00 ns, 67.9920 us/op
+WorkloadPilot    6: 512 op, 34223335.00 ns, 66.8425 us/op
+WorkloadPilot    7: 1024 op, 68840567.00 ns, 67.2271 us/op
+WorkloadPilot    8: 2048 op, 140955399.00 ns, 68.8259 us/op
+WorkloadPilot    9: 4096 op, 273173499.00 ns, 66.6927 us/op
+WorkloadPilot   10: 8192 op, 556125462.00 ns, 67.8864 us/op
+
+OverheadWarmup   1: 8192 op, 14442.00 ns, 1.7629 ns/op
+OverheadWarmup   2: 8192 op, 14622.00 ns, 1.7849 ns/op
+OverheadWarmup   3: 8192 op, 16875.00 ns, 2.0599 ns/op
+OverheadWarmup   4: 8192 op, 14372.00 ns, 1.7544 ns/op
+OverheadWarmup   5: 8192 op, 14472.00 ns, 1.7666 ns/op
+OverheadWarmup   6: 8192 op, 14252.00 ns, 1.7397 ns/op
+
+OverheadActual   1: 8192 op, 13971.00 ns, 1.7054 ns/op
+OverheadActual   2: 8192 op, 14502.00 ns, 1.7703 ns/op
+OverheadActual   3: 8192 op, 14462.00 ns, 1.7654 ns/op
+OverheadActual   4: 8192 op, 16144.00 ns, 1.9707 ns/op
+OverheadActual   5: 8192 op, 14592.00 ns, 1.7813 ns/op
+OverheadActual   6: 8192 op, 14121.00 ns, 1.7238 ns/op
+OverheadActual   7: 8192 op, 14282.00 ns, 1.7434 ns/op
+OverheadActual   8: 8192 op, 16575.00 ns, 2.0233 ns/op
+OverheadActual   9: 8192 op, 14182.00 ns, 1.7312 ns/op
+OverheadActual  10: 8192 op, 14061.00 ns, 1.7164 ns/op
+OverheadActual  11: 8192 op, 14351.00 ns, 1.7518 ns/op
+OverheadActual  12: 8192 op, 14532.00 ns, 1.7739 ns/op
+OverheadActual  13: 8192 op, 13941.00 ns, 1.7018 ns/op
+OverheadActual  14: 8192 op, 14211.00 ns, 1.7347 ns/op
+OverheadActual  15: 8192 op, 14081.00 ns, 1.7189 ns/op
+
+WorkloadWarmup   1: 8192 op, 563571049.00 ns, 68.7953 us/op
+WorkloadWarmup   2: 8192 op, 561309518.00 ns, 68.5192 us/op
+WorkloadWarmup   3: 8192 op, 558553043.00 ns, 68.1827 us/op
+WorkloadWarmup   4: 8192 op, 550927425.00 ns, 67.2519 us/op
+WorkloadWarmup   5: 8192 op, 547750488.00 ns, 66.8641 us/op
+WorkloadWarmup   6: 8192 op, 548996702.00 ns, 67.0162 us/op
+WorkloadWarmup   7: 8192 op, 562239737.00 ns, 68.6328 us/op
+WorkloadWarmup   8: 8192 op, 549668105.00 ns, 67.0982 us/op
+WorkloadWarmup   9: 8192 op, 549137803.00 ns, 67.0334 us/op
+WorkloadWarmup  10: 8192 op, 552457015.00 ns, 67.4386 us/op
+WorkloadWarmup  11: 8192 op, 549970626.00 ns, 67.1351 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 8192 op, 548532643.00 ns, 66.9596 us/op
+WorkloadActual   2: 8192 op, 552624226.00 ns, 67.4590 us/op
+WorkloadActual   3: 8192 op, 550484508.00 ns, 67.1978 us/op
+WorkloadActual   4: 8192 op, 554214658.00 ns, 67.6532 us/op
+WorkloadActual   5: 8192 op, 555640602.00 ns, 67.8272 us/op
+WorkloadActual   6: 8192 op, 548402488.00 ns, 66.9437 us/op
+WorkloadActual   7: 8192 op, 557495878.00 ns, 68.0537 us/op
+WorkloadActual   8: 8192 op, 551922801.00 ns, 67.3734 us/op
+WorkloadActual   9: 8192 op, 553882639.00 ns, 67.6126 us/op
+WorkloadActual  10: 8192 op, 550696417.00 ns, 67.2237 us/op
+WorkloadActual  11: 8192 op, 554862362.00 ns, 67.7322 us/op
+WorkloadActual  12: 8192 op, 550902442.00 ns, 67.2488 us/op
+WorkloadActual  13: 8192 op, 548379156.00 ns, 66.9408 us/op
+WorkloadActual  14: 8192 op, 549325380.00 ns, 67.0563 us/op
+WorkloadActual  15: 8192 op, 549083456.00 ns, 67.0268 us/op
+
+// AfterActualRun
+WorkloadResult   1: 8192 op, 548518361.00 ns, 66.9578 us/op
+WorkloadResult   2: 8192 op, 552609944.00 ns, 67.4573 us/op
+WorkloadResult   3: 8192 op, 550470226.00 ns, 67.1961 us/op
+WorkloadResult   4: 8192 op, 554200376.00 ns, 67.6514 us/op
+WorkloadResult   5: 8192 op, 555626320.00 ns, 67.8255 us/op
+WorkloadResult   6: 8192 op, 548388206.00 ns, 66.9419 us/op
+WorkloadResult   7: 8192 op, 557481596.00 ns, 68.0520 us/op
+WorkloadResult   8: 8192 op, 551908519.00 ns, 67.3716 us/op
+WorkloadResult   9: 8192 op, 553868357.00 ns, 67.6109 us/op
+WorkloadResult  10: 8192 op, 550682135.00 ns, 67.2219 us/op
+WorkloadResult  11: 8192 op, 554848080.00 ns, 67.7305 us/op
+WorkloadResult  12: 8192 op, 550888160.00 ns, 67.2471 us/op
+WorkloadResult  13: 8192 op, 548364874.00 ns, 66.9391 us/op
+WorkloadResult  14: 8192 op, 549311098.00 ns, 67.0546 us/op
+WorkloadResult  15: 8192 op, 549069174.00 ns, 67.0250 us/op
+// GC:  67 2 0 1120921144 8192
+// Threading:  0 0 8192
+
+// AfterAll
+// Benchmark Process 11286 has exited with code 0.
+
+Mean = 67.352 μs, StdErr = 0.092 μs (0.14%), N = 15, StdDev = 0.355 μs
+Min = 66.939 μs, Q1 = 67.040 μs, Median = 67.247 μs, Q3 = 67.631 μs, Max = 68.052 μs
+IQR = 0.591 μs, LowerFence = 66.153 μs, UpperFence = 68.518 μs
+ConfidenceInterval = [66.972 μs; 67.732 μs] (CI 99.9%), Margin = 0.380 μs (0.56% of Mean)
+Skewness = 0.41, Kurtosis = 1.78, MValue = 2
+
+// ** Remained 5 (41.7 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 0m from now) **
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=5]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 5)" --job ShortRun --benchmarkId 3 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 196536.00 ns, 196.5360 us/op
+WorkloadJitting  1: 1 op, 42021754.00 ns, 42.0218 ms/op
+
+WorkloadPilot    1: 2 op, 593362.00 ns, 296.6810 us/op
+WorkloadPilot    2: 3 op, 659712.00 ns, 219.9040 us/op
+WorkloadPilot    3: 4 op, 754244.00 ns, 188.5610 us/op
+WorkloadPilot    4: 5 op, 1108477.00 ns, 221.6954 us/op
+WorkloadPilot    5: 6 op, 1272423.00 ns, 212.0705 us/op
+WorkloadPilot    6: 7 op, 1441919.00 ns, 205.9884 us/op
+WorkloadPilot    7: 8 op, 1642820.00 ns, 205.3525 us/op
+WorkloadPilot    8: 9 op, 1763192.00 ns, 195.9102 us/op
+WorkloadPilot    9: 10 op, 1941890.00 ns, 194.1890 us/op
+WorkloadPilot   10: 11 op, 2113468.00 ns, 192.1335 us/op
+WorkloadPilot   11: 12 op, 2268362.00 ns, 189.0302 us/op
+WorkloadPilot   12: 13 op, 2494501.00 ns, 191.8847 us/op
+WorkloadPilot   13: 14 op, 2605067.00 ns, 186.0762 us/op
+WorkloadPilot   14: 15 op, 2809345.00 ns, 187.2897 us/op
+WorkloadPilot   15: 16 op, 2940782.00 ns, 183.7989 us/op
+WorkloadPilot   16: 32 op, 7646479.00 ns, 238.9525 us/op
+WorkloadPilot   17: 64 op, 15493450.00 ns, 242.0852 us/op
+WorkloadPilot   18: 128 op, 30428580.00 ns, 237.7233 us/op
+WorkloadPilot   19: 256 op, 44547302.00 ns, 174.0129 us/op
+WorkloadPilot   20: 512 op, 95765536.00 ns, 187.0421 us/op
+WorkloadPilot   21: 1024 op, 107641616.00 ns, 105.1188 us/op
+WorkloadPilot   22: 2048 op, 140687412.00 ns, 68.6950 us/op
+WorkloadPilot   23: 4096 op, 278668053.00 ns, 68.0342 us/op
+WorkloadPilot   24: 8192 op, 557937541.00 ns, 68.1076 us/op
+
+WorkloadWarmup   1: 8192 op, 559115873.00 ns, 68.2514 us/op
+WorkloadWarmup   2: 8192 op, 563526616.00 ns, 68.7899 us/op
+WorkloadWarmup   3: 8192 op, 563985737.00 ns, 68.8459 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 8192 op, 560243499.00 ns, 68.3891 us/op
+WorkloadActual   2: 8192 op, 565672333.00 ns, 69.0518 us/op
+WorkloadActual   3: 8192 op, 561828963.00 ns, 68.5826 us/op
+
+// AfterActualRun
+WorkloadResult   1: 8192 op, 560243499.00 ns, 68.3891 us/op
+WorkloadResult   2: 8192 op, 565672333.00 ns, 69.0518 us/op
+WorkloadResult   3: 8192 op, 561828963.00 ns, 68.5826 us/op
+// GC:  66 2 0 1116862824 8192
+// Threading:  0 0 8192
+
+// AfterAll
+// Benchmark Process 11295 has exited with code 0.
+
+Mean = 68.675 μs, StdErr = 0.197 μs (0.29%), N = 3, StdDev = 0.341 μs
+Min = 68.389 μs, Q1 = 68.486 μs, Median = 68.583 μs, Q3 = 68.817 μs, Max = 69.052 μs
+IQR = 0.331 μs, LowerFence = 67.989 μs, UpperFence = 69.314 μs
+ConfidenceInterval = [62.458 μs; 74.891 μs] (CI 99.9%), Margin = 6.217 μs (9.05% of Mean)
+Skewness = 0.25, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 4 (33.3 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 0m from now) **
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=10]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 10)" --job NativeAOT --benchmarkId 4 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 191.00 ns, 191.0000 ns/op
+WorkloadJitting  1: 1 op, 831801.00 ns, 831.8010 us/op
+
+OverheadJitting  2: 16 op, 350.00 ns, 21.8750 ns/op
+WorkloadJitting  2: 16 op, 7094108.00 ns, 443.3818 us/op
+
+WorkloadPilot    1: 16 op, 5589426.00 ns, 349.3391 us/op
+WorkloadPilot    2: 32 op, 10861855.00 ns, 339.4330 us/op
+WorkloadPilot    3: 64 op, 16213532.00 ns, 253.3364 us/op
+WorkloadPilot    4: 128 op, 23110735.00 ns, 180.5526 us/op
+WorkloadPilot    5: 256 op, 46340248.00 ns, 181.0166 us/op
+WorkloadPilot    6: 512 op, 91655554.00 ns, 179.0148 us/op
+WorkloadPilot    7: 1024 op, 181281737.00 ns, 177.0329 us/op
+WorkloadPilot    8: 2048 op, 362295230.00 ns, 176.9020 us/op
+WorkloadPilot    9: 4096 op, 732840226.00 ns, 178.9161 us/op
+
+OverheadWarmup   1: 4096 op, 7852.00 ns, 1.9170 ns/op
+OverheadWarmup   2: 4096 op, 7501.00 ns, 1.8313 ns/op
+OverheadWarmup   3: 4096 op, 9434.00 ns, 2.3032 ns/op
+OverheadWarmup   4: 4096 op, 7201.00 ns, 1.7581 ns/op
+OverheadWarmup   5: 4096 op, 7361.00 ns, 1.7971 ns/op
+OverheadWarmup   6: 4096 op, 9665.00 ns, 2.3596 ns/op
+OverheadWarmup   7: 4096 op, 7381.00 ns, 1.8020 ns/op
+
+OverheadActual   1: 4096 op, 7461.00 ns, 1.8215 ns/op
+OverheadActual   2: 4096 op, 12269.00 ns, 2.9954 ns/op
+OverheadActual   3: 4096 op, 7011.00 ns, 1.7117 ns/op
+OverheadActual   4: 4096 op, 7482.00 ns, 1.8267 ns/op
+OverheadActual   5: 4096 op, 9464.00 ns, 2.3105 ns/op
+OverheadActual   6: 4096 op, 7131.00 ns, 1.7410 ns/op
+OverheadActual   7: 4096 op, 7552.00 ns, 1.8438 ns/op
+OverheadActual   8: 4096 op, 7522.00 ns, 1.8364 ns/op
+OverheadActual   9: 4096 op, 7371.00 ns, 1.7996 ns/op
+OverheadActual  10: 4096 op, 7391.00 ns, 1.8044 ns/op
+OverheadActual  11: 4096 op, 25689.00 ns, 6.2717 ns/op
+OverheadActual  12: 4096 op, 7131.00 ns, 1.7410 ns/op
+OverheadActual  13: 4096 op, 7371.00 ns, 1.7996 ns/op
+OverheadActual  14: 4096 op, 7381.00 ns, 1.8020 ns/op
+OverheadActual  15: 4096 op, 7481.00 ns, 1.8264 ns/op
+
+WorkloadWarmup   1: 4096 op, 742470293.00 ns, 181.2672 us/op
+WorkloadWarmup   2: 4096 op, 741673980.00 ns, 181.0727 us/op
+WorkloadWarmup   3: 4096 op, 735732465.00 ns, 179.6222 us/op
+WorkloadWarmup   4: 4096 op, 738929403.00 ns, 180.4027 us/op
+WorkloadWarmup   5: 4096 op, 737071980.00 ns, 179.9492 us/op
+WorkloadWarmup   6: 4096 op, 728105425.00 ns, 177.7601 us/op
+WorkloadWarmup   7: 4096 op, 730389691.00 ns, 178.3178 us/op
+WorkloadWarmup   8: 4096 op, 728729304.00 ns, 177.9124 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 732748676.00 ns, 178.8937 us/op
+WorkloadActual   2: 4096 op, 736176650.00 ns, 179.7306 us/op
+WorkloadActual   3: 4096 op, 733844753.00 ns, 179.1613 us/op
+WorkloadActual   4: 4096 op, 733727467.00 ns, 179.1327 us/op
+WorkloadActual   5: 4096 op, 733038039.00 ns, 178.9644 us/op
+WorkloadActual   6: 4096 op, 732437006.00 ns, 178.8176 us/op
+WorkloadActual   7: 4096 op, 729711317.00 ns, 178.1522 us/op
+WorkloadActual   8: 4096 op, 731529887.00 ns, 178.5962 us/op
+WorkloadActual   9: 4096 op, 734210112.00 ns, 179.2505 us/op
+WorkloadActual  10: 4096 op, 738845263.00 ns, 180.3821 us/op
+WorkloadActual  11: 4096 op, 742609133.00 ns, 181.3011 us/op
+WorkloadActual  12: 4096 op, 731224798.00 ns, 178.5217 us/op
+WorkloadActual  13: 4096 op, 736325387.00 ns, 179.7669 us/op
+WorkloadActual  14: 4096 op, 735674358.00 ns, 179.6080 us/op
+WorkloadActual  15: 4096 op, 734365019.00 ns, 179.2883 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 732741215.00 ns, 178.8919 us/op
+WorkloadResult   2: 4096 op, 736169189.00 ns, 179.7288 us/op
+WorkloadResult   3: 4096 op, 733837292.00 ns, 179.1595 us/op
+WorkloadResult   4: 4096 op, 733720006.00 ns, 179.1309 us/op
+WorkloadResult   5: 4096 op, 733030578.00 ns, 178.9625 us/op
+WorkloadResult   6: 4096 op, 732429545.00 ns, 178.8158 us/op
+WorkloadResult   7: 4096 op, 729703856.00 ns, 178.1504 us/op
+WorkloadResult   8: 4096 op, 731522426.00 ns, 178.5943 us/op
+WorkloadResult   9: 4096 op, 734202651.00 ns, 179.2487 us/op
+WorkloadResult  10: 4096 op, 738837802.00 ns, 180.3803 us/op
+WorkloadResult  11: 4096 op, 731217337.00 ns, 178.5199 us/op
+WorkloadResult  12: 4096 op, 736317926.00 ns, 179.7651 us/op
+WorkloadResult  13: 4096 op, 735666897.00 ns, 179.6062 us/op
+WorkloadResult  14: 4096 op, 734357558.00 ns, 179.2865 us/op
+// GC:  92 5 0 1553098784 4096
+// Threading:  0 0 4096
+
+// AfterAll
+// Benchmark Process 11304 has exited with code 0.
+
+Mean = 179.160 μs, StdErr = 0.155 μs (0.09%), N = 14, StdDev = 0.581 μs
+Min = 178.150 μs, Q1 = 178.835 μs, Median = 179.145 μs, Q3 = 179.526 μs, Max = 180.380 μs
+IQR = 0.691 μs, LowerFence = 177.798 μs, UpperFence = 180.563 μs
+ConfidenceInterval = [178.505 μs; 179.815 μs] (CI 99.9%), Margin = 0.655 μs (0.37% of Mean)
+Skewness = 0.28, Kurtosis = 2.41, MValue = 2
+
+// ** Remained 3 (25.0 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 0m from now) **
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=10]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 10)" --job ShortRun --benchmarkId 4 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 198148.00 ns, 198.1480 us/op
+WorkloadJitting  1: 1 op, 43195338.00 ns, 43.1953 ms/op
+
+WorkloadPilot    1: 2 op, 1434808.00 ns, 717.4040 us/op
+WorkloadPilot    2: 3 op, 1852315.00 ns, 617.4383 us/op
+WorkloadPilot    3: 4 op, 2160639.00 ns, 540.1598 us/op
+WorkloadPilot    4: 5 op, 3195916.00 ns, 639.1832 us/op
+WorkloadPilot    5: 6 op, 3431771.00 ns, 571.9618 us/op
+WorkloadPilot    6: 7 op, 3924652.00 ns, 560.6646 us/op
+WorkloadPilot    7: 8 op, 4361268.00 ns, 545.1585 us/op
+WorkloadPilot    8: 9 op, 4819448.00 ns, 535.4942 us/op
+WorkloadPilot    9: 10 op, 5240010.00 ns, 524.0010 us/op
+WorkloadPilot   10: 11 op, 5922967.00 ns, 538.4515 us/op
+WorkloadPilot   11: 12 op, 6185993.00 ns, 515.4994 us/op
+WorkloadPilot   12: 13 op, 6509279.00 ns, 500.7138 us/op
+WorkloadPilot   13: 14 op, 7067238.00 ns, 504.8027 us/op
+WorkloadPilot   14: 15 op, 7559638.00 ns, 503.9759 us/op
+WorkloadPilot   15: 16 op, 7943626.00 ns, 496.4766 us/op
+WorkloadPilot   16: 32 op, 19154005.00 ns, 598.5627 us/op
+WorkloadPilot   17: 64 op, 34492590.00 ns, 538.9467 us/op
+WorkloadPilot   18: 128 op, 75799253.00 ns, 592.1817 us/op
+WorkloadPilot   19: 256 op, 86585539.00 ns, 338.2248 us/op
+WorkloadPilot   20: 512 op, 99446229.00 ns, 194.2309 us/op
+WorkloadPilot   21: 1024 op, 185222190.00 ns, 180.8810 us/op
+WorkloadPilot   22: 2048 op, 373197250.00 ns, 182.2252 us/op
+WorkloadPilot   23: 4096 op, 754826399.00 ns, 184.2838 us/op
+
+WorkloadWarmup   1: 4096 op, 767100307.00 ns, 187.2803 us/op
+WorkloadWarmup   2: 4096 op, 764965216.00 ns, 186.7591 us/op
+WorkloadWarmup   3: 4096 op, 766788238.00 ns, 187.2042 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 761592163.00 ns, 185.9356 us/op
+WorkloadActual   2: 4096 op, 766741833.00 ns, 187.1928 us/op
+WorkloadActual   3: 4096 op, 777775026.00 ns, 189.8865 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 761592163.00 ns, 185.9356 us/op
+WorkloadResult   2: 4096 op, 766741833.00 ns, 187.1928 us/op
+WorkloadResult   3: 4096 op, 777775026.00 ns, 189.8865 us/op
+// GC:  92 6 0 1549415912 4096
+// Threading:  0 0 4096
+
+// AfterAll
+// Benchmark Process 11309 has exited with code 0.
+
+Mean = 187.672 μs, StdErr = 1.165 μs (0.62%), N = 3, StdDev = 2.018 μs
+Min = 185.936 μs, Q1 = 186.564 μs, Median = 187.193 μs, Q3 = 188.540 μs, Max = 189.886 μs
+IQR = 1.975 μs, LowerFence = 183.601 μs, UpperFence = 191.503 μs
+ConfidenceInterval = [150.847 μs; 224.497 μs] (CI 99.9%), Margin = 36.825 μs (19.62% of Mean)
+Skewness = 0.22, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 2 (16.7 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 0m from now) **
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=20]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-NativeAOT-1/bin/Release/net10.0/linux-x64/publish/FsLogical.Benchmarks-NativeAOT-1 --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 20)" --job NativeAOT --benchmarkId 5 in 
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5, X64 NativeAOT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: NativeAOT
+
+OverheadJitting  1: 1 op, 180.00 ns, 180.0000 ns/op
+WorkloadJitting  1: 1 op, 1821159.00 ns, 1.8212 ms/op
+
+OverheadJitting  2: 16 op, 2233.00 ns, 139.5625 ns/op
+WorkloadJitting  2: 16 op, 19803792.00 ns, 1.2377 ms/op
+
+WorkloadPilot    1: 16 op, 13852582.00 ns, 865.7864 us/op
+WorkloadPilot    2: 32 op, 20057294.00 ns, 626.7904 us/op
+WorkloadPilot    3: 64 op, 35529121.00 ns, 555.1425 us/op
+WorkloadPilot    4: 128 op, 69115711.00 ns, 539.9665 us/op
+WorkloadPilot    5: 256 op, 136862472.00 ns, 534.6190 us/op
+WorkloadPilot    6: 512 op, 268819808.00 ns, 525.0387 us/op
+WorkloadPilot    7: 1024 op, 538279578.00 ns, 525.6637 us/op
+
+OverheadWarmup   1: 1024 op, 2443.00 ns, 2.3857 ns/op
+OverheadWarmup   2: 1024 op, 4667.00 ns, 4.5576 ns/op
+OverheadWarmup   3: 1024 op, 5579.00 ns, 5.4482 ns/op
+OverheadWarmup   4: 1024 op, 2484.00 ns, 2.4258 ns/op
+OverheadWarmup   5: 1024 op, 2324.00 ns, 2.2695 ns/op
+OverheadWarmup   6: 1024 op, 2414.00 ns, 2.3574 ns/op
+OverheadWarmup   7: 1024 op, 2343.00 ns, 2.2881 ns/op
+
+OverheadActual   1: 1024 op, 4837.00 ns, 4.7236 ns/op
+OverheadActual   2: 1024 op, 2243.00 ns, 2.1904 ns/op
+OverheadActual   3: 1024 op, 4487.00 ns, 4.3818 ns/op
+OverheadActual   4: 1024 op, 4526.00 ns, 4.4199 ns/op
+OverheadActual   5: 1024 op, 2113.00 ns, 2.0635 ns/op
+OverheadActual   6: 1024 op, 2223.00 ns, 2.1709 ns/op
+OverheadActual   7: 1024 op, 4356.00 ns, 4.2539 ns/op
+OverheadActual   8: 1024 op, 2344.00 ns, 2.2891 ns/op
+OverheadActual   9: 1024 op, 2283.00 ns, 2.2295 ns/op
+OverheadActual  10: 1024 op, 2284.00 ns, 2.2305 ns/op
+OverheadActual  11: 1024 op, 4397.00 ns, 4.2939 ns/op
+OverheadActual  12: 1024 op, 2083.00 ns, 2.0342 ns/op
+OverheadActual  13: 1024 op, 2383.00 ns, 2.3271 ns/op
+OverheadActual  14: 1024 op, 4256.00 ns, 4.1563 ns/op
+OverheadActual  15: 1024 op, 2203.00 ns, 2.1514 ns/op
+OverheadActual  16: 1024 op, 2213.00 ns, 2.1611 ns/op
+OverheadActual  17: 1024 op, 4427.00 ns, 4.3232 ns/op
+OverheadActual  18: 1024 op, 2093.00 ns, 2.0439 ns/op
+OverheadActual  19: 1024 op, 2143.00 ns, 2.0928 ns/op
+OverheadActual  20: 1024 op, 2383.00 ns, 2.3271 ns/op
+
+WorkloadWarmup   1: 1024 op, 565105080.00 ns, 551.8604 us/op
+WorkloadWarmup   2: 1024 op, 551329984.00 ns, 538.4082 us/op
+WorkloadWarmup   3: 1024 op, 546572860.00 ns, 533.7626 us/op
+WorkloadWarmup   4: 1024 op, 560649700.00 ns, 547.5095 us/op
+WorkloadWarmup   5: 1024 op, 556490425.00 ns, 543.4477 us/op
+WorkloadWarmup   6: 1024 op, 550674348.00 ns, 537.7679 us/op
+WorkloadWarmup   7: 1024 op, 561805843.00 ns, 548.6385 us/op
+WorkloadWarmup   8: 1024 op, 560346011.00 ns, 547.2129 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1024 op, 547599323.00 ns, 534.7650 us/op
+WorkloadActual   2: 1024 op, 537211223.00 ns, 524.6203 us/op
+WorkloadActual   3: 1024 op, 542386014.00 ns, 529.6738 us/op
+WorkloadActual   4: 1024 op, 541288103.00 ns, 528.6017 us/op
+WorkloadActual   5: 1024 op, 542280285.00 ns, 529.5706 us/op
+WorkloadActual   6: 1024 op, 536301875.00 ns, 523.7323 us/op
+WorkloadActual   7: 1024 op, 555913998.00 ns, 542.8848 us/op
+WorkloadActual   8: 1024 op, 550620708.00 ns, 537.7155 us/op
+WorkloadActual   9: 1024 op, 558105713.00 ns, 545.0251 us/op
+WorkloadActual  10: 1024 op, 562056475.00 ns, 548.8833 us/op
+WorkloadActual  11: 1024 op, 582059044.00 ns, 568.4170 us/op
+WorkloadActual  12: 1024 op, 567804228.00 ns, 554.4963 us/op
+WorkloadActual  13: 1024 op, 540114818.00 ns, 527.4559 us/op
+WorkloadActual  14: 1024 op, 542725897.00 ns, 530.0058 us/op
+WorkloadActual  15: 1024 op, 540122088.00 ns, 527.4630 us/op
+WorkloadActual  16: 1024 op, 540997255.00 ns, 528.3176 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1024 op, 547597009.00 ns, 534.7627 us/op
+WorkloadResult   2: 1024 op, 537208909.00 ns, 524.6181 us/op
+WorkloadResult   3: 1024 op, 542383700.00 ns, 529.6716 us/op
+WorkloadResult   4: 1024 op, 541285789.00 ns, 528.5994 us/op
+WorkloadResult   5: 1024 op, 542277971.00 ns, 529.5683 us/op
+WorkloadResult   6: 1024 op, 536299561.00 ns, 523.7300 us/op
+WorkloadResult   7: 1024 op, 555911684.00 ns, 542.8825 us/op
+WorkloadResult   8: 1024 op, 550618394.00 ns, 537.7133 us/op
+WorkloadResult   9: 1024 op, 558103399.00 ns, 545.0229 us/op
+WorkloadResult  10: 1024 op, 562054161.00 ns, 548.8810 us/op
+WorkloadResult  11: 1024 op, 567801914.00 ns, 554.4941 us/op
+WorkloadResult  12: 1024 op, 540112504.00 ns, 527.4536 us/op
+WorkloadResult  13: 1024 op, 542723583.00 ns, 530.0035 us/op
+WorkloadResult  14: 1024 op, 540119774.00 ns, 527.4607 us/op
+WorkloadResult  15: 1024 op, 540994941.00 ns, 528.3154 us/op
+// GC:  72 8 0 1207286920 1024
+// Threading:  0 0 1024
+
+// AfterAll
+// Benchmark Process 11318 has exited with code 0.
+
+Mean = 534.212 μs, StdErr = 2.440 μs (0.46%), N = 15, StdDev = 9.451 μs
+Min = 523.730 μs, Q1 = 527.888 μs, Median = 529.672 μs, Q3 = 540.298 μs, Max = 554.494 μs
+IQR = 12.410 μs, LowerFence = 509.273 μs, UpperFence = 558.913 μs
+ConfidenceInterval = [524.108 μs; 544.315 μs] (CI 99.9%), Margin = 10.104 μs (1.89% of Mean)
+Skewness = 0.8, Kurtosis = 2.2, MValue = 2
+
+// ** Remained 1 (8.3 %) benchmark(s) to run. Estimated finish 2026-05-05 4:51 (0h 0m from now) **
+// **************************
+// Benchmark: AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=20]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet FsLogical.Benchmarks-ShortRun-2.dll --anonymousPipes 140 141 --benchmarkName "FsLogical.Benchmarks.Benchmarks+AncestorBenchmarks.FindAllDescendants(ChainDepth: 20)" --job ShortRun --benchmarkId 5 in /home/runner/work/fs-logical/fs-logical/tests/FsLogical.Benchmarks/bin/Release/net10.0/FsLogical.Benchmarks-ShortRun-2/bin/Release/net10.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL VectorSize=256
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 198418.00 ns, 198.4180 us/op
+WorkloadJitting  1: 1 op, 44410615.00 ns, 44.4106 ms/op
+
+WorkloadPilot    1: 2 op, 4484443.00 ns, 2.2422 ms/op
+WorkloadPilot    2: 3 op, 6160244.00 ns, 2.0534 ms/op
+WorkloadPilot    3: 4 op, 6792825.00 ns, 1.6982 ms/op
+WorkloadPilot    4: 5 op, 9994540.00 ns, 1.9989 ms/op
+WorkloadPilot    5: 6 op, 10580511.00 ns, 1.7634 ms/op
+WorkloadPilot    6: 7 op, 11953766.00 ns, 1.7077 ms/op
+WorkloadPilot    7: 8 op, 13411950.00 ns, 1.6765 ms/op
+WorkloadPilot    8: 9 op, 14053654.00 ns, 1.5615 ms/op
+WorkloadPilot    9: 10 op, 15254329.00 ns, 1.5254 ms/op
+WorkloadPilot   10: 11 op, 16684862.00 ns, 1.5168 ms/op
+WorkloadPilot   11: 12 op, 18131867.00 ns, 1.5110 ms/op
+WorkloadPilot   12: 13 op, 34059645.00 ns, 2.6200 ms/op
+WorkloadPilot   13: 14 op, 25001477.00 ns, 1.7858 ms/op
+WorkloadPilot   14: 15 op, 15861272.00 ns, 1.0574 ms/op
+WorkloadPilot   15: 16 op, 11279002.00 ns, 704.9376 us/op
+WorkloadPilot   16: 32 op, 22727859.00 ns, 710.2456 us/op
+WorkloadPilot   17: 64 op, 44341061.00 ns, 692.8291 us/op
+WorkloadPilot   18: 128 op, 80211920.00 ns, 626.6556 us/op
+WorkloadPilot   19: 256 op, 138713240.00 ns, 541.8486 us/op
+WorkloadPilot   20: 512 op, 277864950.00 ns, 542.7050 us/op
+WorkloadPilot   21: 1024 op, 570363906.00 ns, 556.9960 us/op
+
+WorkloadWarmup   1: 1024 op, 575504106.00 ns, 562.0157 us/op
+WorkloadWarmup   2: 1024 op, 577060597.00 ns, 563.5357 us/op
+WorkloadWarmup   3: 1024 op, 565775466.00 ns, 552.5151 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1024 op, 576369658.00 ns, 562.8610 us/op
+WorkloadActual   2: 1024 op, 566809181.00 ns, 553.5246 us/op
+WorkloadActual   3: 1024 op, 562753968.00 ns, 549.5644 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1024 op, 576369658.00 ns, 562.8610 us/op
+WorkloadResult   2: 1024 op, 566809181.00 ns, 553.5246 us/op
+WorkloadResult   3: 1024 op, 562753968.00 ns, 549.5644 us/op
+// GC:  72 9 0 1205500344 1024
+// Threading:  0 0 1024
+
+// AfterAll
+// Benchmark Process 11323 has exited with code 0.
+
+Mean = 555.317 μs, StdErr = 3.942 μs (0.71%), N = 3, StdDev = 6.827 μs
+Min = 549.564 μs, Q1 = 551.545 μs, Median = 553.525 μs, Q3 = 558.193 μs, Max = 562.861 μs
+IQR = 6.648 μs, LowerFence = 541.572 μs, UpperFence = 568.165 μs
+ConfidenceInterval = [430.766 μs; 679.867 μs] (CI 99.9%), Margin = 124.550 μs (22.43% of Mean)
+Skewness = 0.24, Kurtosis = 0.67, MValue = 2
+
+// ** Remained 0 (0.0 %) benchmark(s) to run. Estimated finish 2026-05-05 4:50 (0h 0m from now) **
+Run time: 00:01:08 (68.82 sec), executed benchmarks: 6
+
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts/results/BenchmarkRun-joined-2026-05-05-04-50-57-report.csv
+  BenchmarkDotNet.Artifacts/results/BenchmarkRun-joined-2026-05-05-04-50-57-report-github.md
+  BenchmarkDotNet.Artifacts/results/BenchmarkRun-joined-2026-05-05-04-50-57-report.html
+
+// * Detailed results *
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=5]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 67.352 μs, StdErr = 0.092 μs (0.14%), N = 15, StdDev = 0.355 μs
+Min = 66.939 μs, Q1 = 67.040 μs, Median = 67.247 μs, Q3 = 67.631 μs, Max = 68.052 μs
+IQR = 0.591 μs, LowerFence = 66.153 μs, UpperFence = 68.518 μs
+ConfidenceInterval = [66.972 μs; 67.732 μs] (CI 99.9%), Margin = 0.380 μs (0.56% of Mean)
+Skewness = 0.41, Kurtosis = 1.78, MValue = 2
+-------------------- Histogram --------------------
+[66.750 μs ; 68.241 μs) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=5]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 68.675 μs, StdErr = 0.197 μs (0.29%), N = 3, StdDev = 0.341 μs
+Min = 68.389 μs, Q1 = 68.486 μs, Median = 68.583 μs, Q3 = 68.817 μs, Max = 69.052 μs
+IQR = 0.331 μs, LowerFence = 67.989 μs, UpperFence = 69.314 μs
+ConfidenceInterval = [62.458 μs; 74.891 μs] (CI 99.9%), Margin = 6.217 μs (9.05% of Mean)
+Skewness = 0.25, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[68.079 μs ; 69.362 μs) | @@@
+---------------------------------------------------
+
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=10]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 179.160 μs, StdErr = 0.155 μs (0.09%), N = 14, StdDev = 0.581 μs
+Min = 178.150 μs, Q1 = 178.835 μs, Median = 179.145 μs, Q3 = 179.526 μs, Max = 180.380 μs
+IQR = 0.691 μs, LowerFence = 177.798 μs, UpperFence = 180.563 μs
+ConfidenceInterval = [178.505 μs; 179.815 μs] (CI 99.9%), Margin = 0.655 μs (0.37% of Mean)
+Skewness = 0.28, Kurtosis = 2.41, MValue = 2
+-------------------- Histogram --------------------
+[177.834 μs ; 180.696 μs) | @@@@@@@@@@@@@@
+---------------------------------------------------
+
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=10]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 187.672 μs, StdErr = 1.165 μs (0.62%), N = 3, StdDev = 2.018 μs
+Min = 185.936 μs, Q1 = 186.564 μs, Median = 187.193 μs, Q3 = 188.540 μs, Max = 189.886 μs
+IQR = 1.975 μs, LowerFence = 183.601 μs, UpperFence = 191.503 μs
+ConfidenceInterval = [150.847 μs; 224.497 μs] (CI 99.9%), Margin = 36.825 μs (19.62% of Mean)
+Skewness = 0.22, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[184.699 μs ; 191.723 μs) | @@@
+---------------------------------------------------
+
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [ChainDepth=20]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 534.212 μs, StdErr = 2.440 μs (0.46%), N = 15, StdDev = 9.451 μs
+Min = 523.730 μs, Q1 = 527.888 μs, Median = 529.672 μs, Q3 = 540.298 μs, Max = 554.494 μs
+IQR = 12.410 μs, LowerFence = 509.273 μs, UpperFence = 558.913 μs
+ConfidenceInterval = [524.108 μs; 544.315 μs] (CI 99.9%), Margin = 10.104 μs (1.89% of Mean)
+Skewness = 0.8, Kurtosis = 2.2, MValue = 2
+-------------------- Histogram --------------------
+[521.598 μs ; 540.423 μs) | @@@@@@@@@@@
+[540.423 μs ; 559.524 μs) | @@@@
+---------------------------------------------------
+
+AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [ChainDepth=20]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 555.317 μs, StdErr = 3.942 μs (0.71%), N = 3, StdDev = 6.827 μs
+Min = 549.564 μs, Q1 = 551.545 μs, Median = 553.525 μs, Q3 = 558.193 μs, Max = 562.861 μs
+IQR = 6.648 μs, LowerFence = 541.572 μs, UpperFence = 568.165 μs
+ConfidenceInterval = [430.766 μs; 679.867 μs] (CI 99.9%), Margin = 124.550 μs (22.43% of Mean)
+Skewness = 0.24, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[545.332 μs ; 557.757 μs) | @@
+[557.757 μs ; 569.074 μs) | @
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=50]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 34.890 μs, StdErr = 0.097 μs (0.28%), N = 15, StdDev = 0.374 μs
+Min = 34.518 μs, Q1 = 34.583 μs, Median = 34.789 μs, Q3 = 35.176 μs, Max = 35.536 μs
+IQR = 0.593 μs, LowerFence = 33.693 μs, UpperFence = 36.066 μs
+ConfidenceInterval = [34.490 μs; 35.289 μs] (CI 99.9%), Margin = 0.400 μs (1.15% of Mean)
+Skewness = 0.63, Kurtosis = 1.69, MValue = 2
+-------------------- Histogram --------------------
+[34.319 μs ; 35.735 μs) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=50]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 37.242 μs, StdErr = 0.129 μs (0.35%), N = 3, StdDev = 0.223 μs
+Min = 37.035 μs, Q1 = 37.124 μs, Median = 37.212 μs, Q3 = 37.346 μs, Max = 37.479 μs
+IQR = 0.222 μs, LowerFence = 36.791 μs, UpperFence = 37.678 μs
+ConfidenceInterval = [33.168 μs; 41.316 μs] (CI 99.9%), Margin = 4.074 μs (10.94% of Mean)
+Skewness = 0.13, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[36.832 μs ; 37.495 μs) | @@@
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=200]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 138.942 μs, StdErr = 0.162 μs (0.12%), N = 13, StdDev = 0.583 μs
+Min = 137.761 μs, Q1 = 138.624 μs, Median = 139.004 μs, Q3 = 139.271 μs, Max = 139.963 μs
+IQR = 0.647 μs, LowerFence = 137.652 μs, UpperFence = 140.242 μs
+ConfidenceInterval = [138.244 μs; 139.640 μs] (CI 99.9%), Margin = 0.698 μs (0.50% of Mean)
+Skewness = -0.3, Kurtosis = 2.4, MValue = 2
+-------------------- Histogram --------------------
+[137.532 μs ; 140.288 μs) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=200]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 139.781 μs, StdErr = 0.388 μs (0.28%), N = 3, StdDev = 0.672 μs
+Min = 139.005 μs, Q1 = 139.579 μs, Median = 140.154 μs, Q3 = 140.169 μs, Max = 140.184 μs
+IQR = 0.589 μs, LowerFence = 138.695 μs, UpperFence = 141.053 μs
+ConfidenceInterval = [127.523 μs; 152.039 μs] (CI 99.9%), Margin = 12.258 μs (8.77% of Mean)
+Skewness = -0.38, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[138.983 μs ; 140.206 μs) | @@@
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT(Toolchain=ILCompiler 10.0.5) [DatabaseSize=1000]
+Runtime = .NET 10.0.5, X64 NativeAOT x86-64-v3; GC = Concurrent Workstation
+Mean = 748.406 μs, StdErr = 1.811 μs (0.24%), N = 15, StdDev = 7.012 μs
+Min = 734.003 μs, Q1 = 746.192 μs, Median = 750.487 μs, Q3 = 753.736 μs, Max = 755.900 μs
+IQR = 7.544 μs, LowerFence = 734.877 μs, UpperFence = 765.051 μs
+ConfidenceInterval = [740.909 μs; 755.902 μs] (CI 99.9%), Margin = 7.496 μs (1.00% of Mean)
+Skewness = -0.84, Kurtosis = 2.3, MValue = 2
+-------------------- Histogram --------------------
+[730.271 μs ; 759.632 μs) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3) [DatabaseSize=1000]
+Runtime = .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3; GC = Concurrent Workstation
+Mean = 730.191 μs, StdErr = 2.815 μs (0.39%), N = 3, StdDev = 4.876 μs
+Min = 725.010 μs, Q1 = 727.941 μs, Median = 730.871 μs, Q3 = 732.781 μs, Max = 734.691 μs
+IQR = 4.840 μs, LowerFence = 720.680 μs, UpperFence = 740.041 μs
+ConfidenceInterval = [641.232 μs; 819.149 μs] (CI 99.9%), Margin = 88.958 μs (12.18% of Mean)
+Skewness = -0.14, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[720.573 μs ; 739.128 μs) | @@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.4 LTS (Noble Numbat)
+AMD EPYC 9V74 2.86GHz, 1 CPU, 4 logical and 2 physical cores
+.NET SDK 10.0.201
+  [Host]    : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3 DEBUG
+  NativeAOT : .NET 10.0.5, X64 NativeAOT x86-64-v3
+  ShortRun  : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+
+
+| Type               | Method                                                | Job       | Toolchain         | IterationCount | LaunchCount | WarmupCount | ChainDepth | DatabaseSize | Mean      | Error      | StdDev   | Gen0     | Gen1    | Allocated  |
+|------------------- |------------------------------------------------------ |---------- |------------------ |--------------- |------------ |------------ |----------- |------------- |----------:|-----------:|---------:|---------:|--------:|-----------:|
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | 5          | ?            |  67.35 μs |   0.380 μs | 0.355 μs |   8.1787 |  0.2441 |  133.62 KB |
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | ShortRun  | Default           | 3              | 1           | 3           | 5          | ?            |  68.67 μs |   6.217 μs | 0.341 μs |   8.0566 |  0.2441 |  133.14 KB |
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | 10         | ?            | 179.16 μs |   0.655 μs | 0.581 μs |  22.4609 |  1.2207 |  370.29 KB |
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | ShortRun  | Default           | 3              | 1           | 3           | 10         | ?            | 187.67 μs |  36.825 μs | 2.018 μs |  22.4609 |  1.4648 |  369.41 KB |
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | 20         | ?            | 534.21 μs |  10.104 μs | 9.451 μs |  70.3125 |  7.8125 | 1151.36 KB |
+| AncestorBenchmarks | 'ancestor - find all descendants (non-indexed)'       | ShortRun  | Default           | 3              | 1           | 3           | 20         | ?            | 555.32 μs | 124.550 μs | 6.827 μs |  70.3125 |  8.7891 | 1149.65 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | ?          | 50           |  34.89 μs |   0.400 μs | 0.374 μs |   5.4932 |  0.2441 |   90.13 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | ShortRun  | Default           | 3              | 1           | 3           | ?          | 50           |  37.24 μs |   4.074 μs | 0.223 μs |   5.4932 |  0.2441 |   90.13 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | ?          | 200          | 138.94 μs |   0.698 μs | 0.583 μs |  21.7285 |  3.4180 |  357.32 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | ShortRun  | Default           | 3              | 1           | 3           | ?          | 200          | 139.78 μs |  12.258 μs | 0.672 μs |  21.7285 |  3.4180 |  357.32 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | NativeAOT | ILCompiler 10.0.5 | Default        | Default     | Default     | ?          | 1000         | 748.41 μs |   7.496 μs | 7.012 μs | 108.3984 | 53.7109 | 1782.32 KB |
+| SolverBenchmarks   | 'solve - enumerate all from fan-out DB (non-indexed)' | ShortRun  | Default           | 3              | 1           | 3           | ?          | 1000         | 730.19 μs |  88.958 μs | 4.876 μs | 108.3984 | 53.7109 | 1782.32 KB |
+
+// * Hints *
+Outliers
+  AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT     -> 1 outlier  was  removed (181.30 μs)
+  AncestorBenchmarks.'ancestor - find all descendants (non-indexed)': NativeAOT     -> 1 outlier  was  removed (568.42 μs)
+  SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT -> 2 outliers were removed (140.82 μs, 140.88 μs)
+  SolverBenchmarks.'solve - enumerate all from fan-out DB (non-indexed)': NativeAOT -> 1 outlier  was  detected (734.00 μs)
+
+// * Legends *
+  ChainDepth   : Value of the 'ChainDepth' parameter
+  DatabaseSize : Value of the 'DatabaseSize' parameter
+  Mean         : Arithmetic mean of all measurements
+  Error        : Half of 99.9% confidence interval
+  StdDev       : Standard deviation of all measurements
+  Gen0         : GC Generation 0 collects per 1000 operations
+  Gen1         : GC Generation 1 collects per 1000 operations
+  Allocated    : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 μs         : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Global total time: 00:03:59 (239.08 sec), executed benchmarks: 12
+// * Artifacts cleanup *
+Artifacts cleanup is finished

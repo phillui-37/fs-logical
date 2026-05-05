@@ -231,21 +231,51 @@ dotnet test tests/FsLogical.Tests/FsLogical.Tests.fsproj --collect:"XPlat Code C
 
 ---
 
+## Native AOT Compatibility
+
+The library is fully compatible with [.NET Native AOT](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/) compilation.  The library project sets `<IsAotCompatible>true</IsAotCompatible>` so AOT analysis warnings are surfaced at build time.
+
+### What was fixed for AOT
+
+All `sprintf` format-string calls in the library were replaced with F# [string interpolation](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/interpolated-strings) (`$"…"`).  The old `sprintf` implementation uses `MethodInfo.MakeGenericMethod()` internally which is not allowed by the Native AOT compiler.
+
+### AOT test project
+
+`tests/FsLogical.AotTests/` is a Native AOT console application that exercises every public surface of the library (50 assertion-style tests covering Term, Subst, Unification, Solver, IndexedDatabase, DSL, and PrologImport).  Publish and run it with:
+
+```bash
+dotnet publish tests/FsLogical.AotTests/FsLogical.AotTests.fsproj -c Release
+./tests/FsLogical.AotTests/bin/Release/net10.0/linux-x64/publish/FsLogical.AotTests
+```
+
+---
+
 ## Benchmark Snapshot
 
-Short-run BenchmarkDotNet sample on GitHub-hosted Linux (`AMD EPYC 7763`, `.NET 10.0.5`):
+Short-run BenchmarkDotNet sample on GitHub-hosted Linux (`AMD EPYC 9V74`, `.NET 10.0.5`):
 
-| Scenario | Mean |
-|---|---:|
-| `ancestor` all descendants, depth 20 (non-indexed) | 550.56 µs |
-| `ancestor` all descendants, depth 20 (indexed) | 372.95 µs |
-| `solve` fan-out enumeration, 1,000 facts (non-indexed) | 730.66 µs |
-| `solve` fan-out enumeration, 1,000 facts (indexed) | 790.79 µs |
+### JIT vs. Native AOT comparison
 
-The indexed path helps most on recursive ancestor workloads, while flat full-enumeration workloads are already dominated by result materialisation.
+| Scenario | JIT (ShortRun) | NativeAOT | AOT / JIT |
+|---|---:|---:|---:|
+| `ancestor` all descendants, depth 5 (non-indexed) | 68.67 µs | 67.35 µs | 0.98× |
+| `ancestor` all descendants, depth 10 (non-indexed) | 187.67 µs | 179.16 µs | 0.95× |
+| `ancestor` all descendants, depth 20 (non-indexed) | 555.32 µs | 534.21 µs | 0.96× |
+| `solve` fan-out enumeration, 50 facts (non-indexed) | 37.24 µs | 34.89 µs | 0.94× |
+| `solve` fan-out enumeration, 200 facts (non-indexed) | 139.78 µs | 138.94 µs | 0.99× |
+| `solve` fan-out enumeration, 1,000 facts (non-indexed) | 730.19 µs | 748.41 µs | 1.02× |
 
-Reproduce the sample:
+AOT and JIT performance are essentially equivalent for this library.  The logic-programming workloads are dominated by allocations and GC rather than JIT overhead, so the AOT speedup is modest (typically < 5 %).
+
+Reproduce the JIT-only snapshot:
 
 ```bash
 dotnet run --project tests/FsLogical.Benchmarks/FsLogical.Benchmarks.fsproj -c Release -- -j short -m --join -f '*.SolverBenchmarks.SolveFanOutAll' '*.SolverBenchmarks.SolveFanOutAllIndexed' '*.AncestorBenchmarks.FindAllDescendants' '*.AncestorBenchmarks.FindAllDescendantsIndexed'
 ```
+
+Reproduce the JIT + AOT side-by-side table (adds `--aot` flag; downloads the ILCompiler package on first run):
+
+```bash
+dotnet run --project tests/FsLogical.Benchmarks/FsLogical.Benchmarks.fsproj -c Release -- --aot -j short --join -f '*.AncestorBenchmarks.FindAllDescendants' '*.SolverBenchmarks.SolveFanOutAll'
+```
+

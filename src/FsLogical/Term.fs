@@ -25,7 +25,7 @@ type Term =
         | Compound(name, []) -> name
         | Compound(name, args) ->
             let argsStr = args |> List.map string |> String.concat ", "
-            sprintf "%s(%s)" name argsStr
+            $"{name}({argsStr})"
 
 /// A logic clause: a fact (head with no body) or a rule (head :- body).
 type Clause = {

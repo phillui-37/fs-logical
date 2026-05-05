@@ -14,7 +14,7 @@ let private freshStamp () : int64 =
 /// Rename all variables in a clause to fresh names, preventing variable capture
 /// when the same rule is applied multiple times in a derivation.
 let private freshenClause (stamp: int64) (clause: Clause) : Clause =
-    let rename name = sprintf "%s_%d" name stamp
+    let rename name = $"{name}_{stamp}"
 
     let rec renameTerm term =
         match term with

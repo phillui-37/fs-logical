@@ -16,7 +16,7 @@ let mutable private wildCounter = 0L
 /// so all wildcards in a query are independent of each other.
 let wild () =
     let n = System.Threading.Interlocked.Increment(&wildCounter)
-    Var (sprintf "_w%d" n)
+    Var $"_w{n}"
 
 // ── Operators re-exported for convenience ────────────────────────────────
 

@@ -8,6 +8,21 @@ It implements core Prolog concepts (unification, SLD resolution, backtracking) i
 
 ---
 
+## REPL / FSI
+
+For one-stop interactive usage, load the repository root script:
+
+```fsharp
+#load "FsLogical.fsx"
+
+open FsLogical.Term
+open FsLogical.DSL
+```
+
+That script pulls in the required package dependency and loads the source files in the correct order for FSI.
+
+---
+
 ## Features
 
 | Concept | Implementation |

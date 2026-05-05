@@ -33,6 +33,7 @@ That script pulls in the required package dependency and loads the source files 
 | Backtracking search | Lazy `seq<Substitution>` via SLD resolution (`Solver` module) |
 | Solver controls | `solveN`, `solveWithOptions`, indexed solver variants |
 | F# DSL | `logicDB {}` CE, `logicQuery {}` CE, operators, active patterns (`DSL` module) |
+| Prolog import | Parse `.pl` files or raw Prolog strings into a `Database` (`PrologImport` module) |
 
 ---
 
@@ -95,12 +96,14 @@ src/
     Unification.fs   ← Robinson's unification algorithm
     Solver.fs        ← SLD resolution with lazy backtracking
     DSL.fs           ← logicDB / logicQuery CEs, active patterns, helpers
+    PrologImport.fs  ← Prolog source parser; produces a Database from .pl files or strings
 tests/
   FsLogical.Tests/
     UnificationTests.fs
     SolverTests.fs
     DSLTests.fs
     StressTests.fs
+    PrologImportTests.fs
   FsLogical.Benchmarks/
     Benchmarks.fs
     Program.fs
@@ -147,6 +150,67 @@ match term with
 | Pred "parent" [a; b] -> printfn "%A is parent of %A" a b
 | _ -> ()
 ```
+
+---
+
+## Prolog Import
+
+The `FsLogical.PrologImport` module reads existing Prolog source (`.pl` files or
+raw strings) and returns a `Database` that works directly with the solver pipeline.
+
+```fsharp
+open FsLogical.PrologImport
+
+// From a string
+let db = parseString """
+parent(tom, bob).
+parent(tom, liz).
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
+"""
+
+// From a file
+let db = parseFile "knowledge_base.pl"
+
+// Use the imported database with the existing solver
+solve db ("ancestor" /@ [Var "A"; Atom "bob"])
+|> Seq.map (fun s -> ground "A" s)
+|> Seq.toList
+// → [Atom "tom"]
+
+// Works with indexDatabase too
+let idb = indexDatabase db
+solveIndexed idb ("parent" /@ [Atom "tom"; Var "C"])
+|> Seq.map (fun s -> ground "C" s)
+|> Seq.toList
+// → [Atom "bob"; Atom "liz"]
+```
+
+### Supported Prolog syntax
+
+| Feature | Detail |
+|---|---|
+| Facts | `functor(arg1, arg2, …).` |
+| Rules | `head :- g1, g2, g3.` |
+| Atoms | Bare (`foo`) and single-quoted (`'hello world'`) |
+| Variables | Uppercase (`X`, `MyVar`) and anonymous (`_`) |
+| Numbers | Integers, floats, negative literals |
+| Compounds | `f(a, g(b, c))` |
+| Lists | `[a,b,c]`, `[H\|T]`, `[]` — translated to nested `./2` cons cells |
+| Infix operators | `is`, `=`, `\=`, `<`, `>`, arithmetic (`+`, `-`, `*`, `/`, `mod`, …) |
+| Prefix operators | `\+`, `not` |
+| Comments | `%` line comments and `/* */` block comments |
+| Directives | `:- …` silently skipped |
+| Error recovery | Malformed clauses are skipped; parsing continues at the next `.` |
+
+### Limitations
+
+- Operator precedence is not implemented; infix expressions are parsed
+  right-recursively. Pure knowledge-base files (facts and simple rules) are
+  unaffected, but complex arithmetic may not associate as standard Prolog would.
+- Disjunction (`;`) in rule bodies causes those clauses to be skipped.
+- Character-code (`0'c`) and non-decimal base literals (`0x…`, `0b…`, `0o…`) are
+  not supported.
 
 ---
 

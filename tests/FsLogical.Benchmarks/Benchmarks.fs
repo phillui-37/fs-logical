@@ -85,8 +85,8 @@ type ApplySubstBenchmarks() =
         // X0 -> X1 -> X2 -> ... -> Xn -> Atom "end"
         let pairs =
             [ for i in 0 .. this.ChainLength - 1 ->
-                  (sprintf "X%d" i, Var (sprintf "X%d" (i + 1)))
-              yield (sprintf "X%d" this.ChainLength, Atom "end") ]
+                  ($"X{i}", Var $"X{i + 1}")
+              yield ($"X{this.ChainLength}", Atom "end") ]
         Subst.ofSeq pairs
 
     [<Benchmark(Description = "walk through substitution chain")>]
@@ -98,10 +98,10 @@ type ApplySubstBenchmarks() =
     member this.ApplySubstWideCompound() =
         let pairs =
             [ for i in 1 .. this.ChainLength ->
-                  (sprintf "V%d" i, Integer i) ]
+                  ($"V{i}", Integer i) ]
         let subst = Subst.ofSeq pairs
         let term =
-            Compound("f", [ for i in 1 .. this.ChainLength -> Var (sprintf "V%d" i) ])
+            Compound("f", [ for i in 1 .. this.ChainLength -> Var $"V{i}" ])
         applySubst subst term |> ignore
 
 // ── Solver benchmarks - non-indexed ──────────────────────────────────────────
@@ -193,17 +193,17 @@ type SubstitutionBenchmarks() =
     member this.SubstBuildIncremental() =
         let mutable s = Subst.empty
         for i in 1 .. this.Size do
-            s <- Subst.add (sprintf "V%d" i) (Integer i) s
+            s <- Subst.add $"V{i}" (Integer i) s
         s |> ignore
 
     [<Benchmark(Description = "Subst.tryFind - lookup in substitution")>]
     member this.SubstTryFind() =
         let s =
-            Subst.ofSeq [ for i in 1 .. this.Size -> (sprintf "V%d" i, Integer i) ]
+            Subst.ofSeq [ for i in 1 .. this.Size -> ($"V{i}", Integer i) ]
         // Look up the last-inserted key (worst hash probe scenario for some implementations)
-        Subst.tryFind (sprintf "V%d" this.Size) s |> ignore
+        Subst.tryFind $"V{this.Size}" s |> ignore
 
     [<Benchmark(Description = "Subst.ofSeq - bulk construction")>]
     member this.SubstOfSeq() =
-        Subst.ofSeq [ for i in 1 .. this.Size -> (sprintf "V%d" i, Integer i) ]
+        Subst.ofSeq [ for i in 1 .. this.Size -> ($"V{i}", Integer i) ]
         |> ignore

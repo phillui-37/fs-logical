@@ -22,6 +22,9 @@ packages/
 # dotnet test
 TestResults/
 
+# BenchmarkDotNet output
+BenchmarkDotNet.Artifacts/
+
 # OS
 .DS_Store
 Thumbs.db

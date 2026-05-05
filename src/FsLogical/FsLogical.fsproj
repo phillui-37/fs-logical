@@ -10,6 +10,7 @@
     <Compile Include="Unification.fs" />
     <Compile Include="Solver.fs" />
     <Compile Include="DSL.fs" />
+    <Compile Include="PrologImport.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
     <Compile Include="SolverTests.fs" />
     <Compile Include="DSLTests.fs" />
     <Compile Include="StressTests.fs" />
+    <Compile Include="PrologImportTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -20,6 +20,7 @@
     <Compile Include="Solver.fs" />
     <Compile Include="DSL.fs" />
     <Compile Include="PrologImport.fs" />
+    <Compile Include="CodeGen.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/FsLogical/FsLogical.fsproj" />
+    <Project Path="src/FsLogical.CodeGen/FsLogical.CodeGen.fsproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/FsLogical.AotTests/FsLogical.AotTests.fsproj" />

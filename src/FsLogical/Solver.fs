@@ -16,14 +16,17 @@ let private freshStamp () : int64 =
 let private freshenClause (stamp: int64) (clause: Clause) : Clause =
     let rename name = $"{name}_{stamp}"
 
-    let rec renameTerm term =
+    let rec renameTerm depth term =
+        if depth > maxTermDepth then
+            invalidOp $"Term nesting depth exceeds the maximum of {maxTermDepth}. Reduce compound term depth to avoid stack overflow."
         match term with
         | Var v -> Var (rename v)
-        | Compound(name, args) -> normalize (Compound(name, List.map renameTerm args))
+        | Compound(name, []) -> Atom name  // normalise zero-arity
+        | Compound(name, args) -> Compound(name, List.map (renameTerm (depth + 1)) args)
         | other -> other
 
-    { Head = renameTerm clause.Head
-      Body = List.map renameTerm clause.Body }
+    { Head = renameTerm 0 clause.Head
+      Body = List.map (renameTerm 0) clause.Body }
 
 type SolverOptions = {
     MaxDepth: int

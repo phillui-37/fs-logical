@@ -79,23 +79,41 @@ let rule head body = { Head = head; Body = body }
 /// Smart constructor for a database.
 let database clauses = { Clauses = clauses }
 
+/// Maximum term-nesting depth for recursive operations.
+/// Recursive functions on terms raise <see cref="System.InvalidOperationException"/>
+/// when this depth is exceeded, preventing stack overflow.
+let maxTermDepth = 10_000
+
 /// Normalise term representations used by the public DSL.
 /// Zero-argument compounds are treated as atoms.
-let rec normalize (term: Term) : Term =
-    match term with
-    | Compound(name, []) -> Atom name
-    | Compound(name, args) -> Compound(name, args |> List.map normalize)
-    | other -> other
+/// Raises <see cref="System.InvalidOperationException"/> when the term nesting depth
+/// exceeds <see cref="maxTermDepth"/>.
+let normalize (term: Term) : Term =
+    let rec go depth t =
+        if depth > maxTermDepth then
+            invalidOp $"Term nesting depth exceeds the maximum of {maxTermDepth}. Reduce compound term depth to avoid stack overflow."
+        match t with
+        | Compound(name, []) -> Atom name
+        | Compound(name, args) -> Compound(name, args |> List.map (go (depth + 1)))
+        | other -> other
+    go 0 term
 
 /// Return true when the term is ground under the supplied substitution.
-let rec isGround (term: Term) (subst: Substitution) : bool =
-    match normalize term with
-    | Var v ->
-        match Subst.tryFind v subst with
-        | Some t -> isGround t subst
-        | None -> false
-    | Atom _ | Integer _ | Float _ -> true
-    | Compound(_, args) -> args |> List.forall (fun arg -> isGround arg subst)
+/// Raises <see cref="System.InvalidOperationException"/> when the term nesting depth
+/// exceeds <see cref="maxTermDepth"/>.
+let isGround (term: Term) (subst: Substitution) : bool =
+    let rec go depth t =
+        if depth > maxTermDepth then
+            invalidOp $"Term nesting depth exceeds the maximum of {maxTermDepth}. Reduce compound term depth to avoid stack overflow."
+        match t with
+        | Compound(_, []) -> true  // zero-arity normalises to an atom, always ground
+        | Var v ->
+            match Subst.tryFind v subst with
+            | Some t2 -> go (depth + 1) t2
+            | None -> false
+        | Atom _ | Integer _ | Float _ -> true
+        | Compound(_, args) -> args |> List.forall (go (depth + 1))
+    go 0 term
 
 /// Inline operator: "functor" /@ [arg1; arg2] builds a Compound term.
 let inline (/@) (name: string) (args: Term list) = normalize (Compound(name, args))

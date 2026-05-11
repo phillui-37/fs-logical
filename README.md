@@ -32,7 +32,7 @@ That script pulls in the required package dependency and loads the source files 
 | Knowledge base | Facts and rules in a `Database` (`Term` module) |
 | Backtracking search | Lazy `seq<Substitution>` via SLD resolution (`Solver` module) |
 | Solver controls | `solveN`, `solveWithOptions`, indexed solver variants |
-| F# DSL | `logicDB {}` CE, `logicQuery {}` CE, operators, active patterns (`DSL` module) |
+| F# DSL | `logicDB {}` CE, `logicQuery {}` CE, operators, active patterns, `?-`/`ask`/`findAll`/`findFirst` (`DSL` module) |
 | Prolog import | Parse `.pl` files or raw Prolog strings into a `Database` (`PrologImport` module) |
 
 ---
@@ -149,6 +149,55 @@ match subst with
 match term with
 | Pred "parent" [a; b] -> printfn "%A is parent of %A" a b
 | _ -> ()
+```
+
+### `?-` — Prolog-style query operator
+
+The infix `?-` operator mirrors the Prolog top-level `?- goal.` prompt.
+`db ?- goals` runs the conjunction of goals and returns a lazy sequence of
+satisfying substitutions.
+
+```fsharp
+// ?-parent(tom, X).  → what children does tom have?
+family ?- ["parent" /@ [atom "tom"; Var "X"]]
+|> Seq.map (valueOf "X")
+|> Seq.toList
+// → [Atom "bob"; Atom "liz"]
+
+// ?-likes(alice,X), likes(X,carol).  → shared variable in conjunction
+db ?- ["likes" /@ [atom "alice"; Var "X"]
+       "likes" /@ [Var "X"; atom "carol"]]
+|> Seq.map (valueOf "X")
+|> Seq.toList
+// → [Atom "bob"]
+```
+
+### `ask` — boolean existence check
+
+```fsharp
+// ?-parent(tom, bob).  → is bob a child of tom?
+ask family ["parent" /@ [atom "tom"; atom "bob"]]   // true
+ask family ["parent" /@ [atom "ann"; atom "tom"]]   // false
+```
+
+### `findAll` — collect all values for a variable
+
+```fsharp
+// ?-parent(tom, X).  → all children of tom
+findAll "X" family ["parent" /@ [atom "tom"; Var "X"]]
+// → [Atom "bob"; Atom "liz"]
+```
+
+### `findFirst` — first value for a variable (optional)
+
+```fsharp
+// ?-parent(tom, X).  → first child of tom
+findFirst "X" family ["parent" /@ [atom "tom"; Var "X"]]
+// → Some (Atom "bob")
+
+// no solution
+findFirst "X" family ["parent" /@ [atom "nobody"; Var "X"]]
+// → None
 ```
 
 ---

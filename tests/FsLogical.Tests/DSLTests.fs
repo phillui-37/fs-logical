@@ -284,3 +284,116 @@ let ``logicQuery supports for loops`` () =
     results |> should contain (atom "liz")
     results |> should contain (atom "ann")
     results |> should contain (atom "pat")
+
+// ── Prolog-style ?- operator ──────────────────────────────────────────────
+
+// Build a small extra DB for the ?- / ask / findAll / findFirst tests
+let private extraDB =
+    logicDB {
+        yield fact ("likes" /@ [atom "alice"; atom "bob"])
+        yield fact ("likes" /@ [atom "alice"; atom "carol"])
+        yield fact ("likes" /@ [atom "bob";   atom "carol"])
+        yield ("friends" /@ [Var "X"; Var "Y"]) |-
+              ["likes" /@ [Var "X"; Var "Y"]
+               "likes" /@ [Var "Y"; Var "X"]]
+    }
+
+[<Fact>]
+let ``(?-) returns substitutions for a single goal with variable`` () =
+    // ?-likes(alice,X).  → what does alice like?
+    let results =
+        extraDB ?- ["likes" /@ [atom "alice"; Var "X"]]
+        |> Seq.map (valueOf "X")
+        |> Seq.toList
+    results |> should contain (atom "bob")
+    results |> should contain (atom "carol")
+    results |> List.length |> should equal 2
+
+[<Fact>]
+let ``(?-) returns substitutions for a conjunction with shared variable`` () =
+    // ?-likes(alice,X),likes(X,carol).  → who does alice like that also likes carol?
+    let results =
+        extraDB ?- ["likes" /@ [atom "alice"; Var "X"]
+                    "likes" /@ [Var "X"; atom "carol"]]
+        |> Seq.map (valueOf "X")
+        |> Seq.toList
+    results |> should contain (atom "bob")
+    results |> List.length |> should equal 1
+
+[<Fact>]
+let ``(?-) returns one solution for a satisfied ground goal`` () =
+    // ?-likes(alice,bob).  → is alice-bob a fact?
+    let results =
+        extraDB ?- ["likes" /@ [atom "alice"; atom "bob"]]
+        |> Seq.toList
+    results |> List.length |> should equal 1
+
+[<Fact>]
+let ``(?-) returns empty sequence for an unsatisfied ground goal`` () =
+    // ?-likes(bob,alice).  → bob does not like alice
+    let results =
+        extraDB ?- ["likes" /@ [atom "bob"; atom "alice"]]
+        |> Seq.toList
+    results |> should be Empty
+
+[<Fact>]
+let ``ask returns true when a ground fact exists`` () =
+    // ?-likes(alice,bob).  → boolean check
+    ask extraDB ["likes" /@ [atom "alice"; atom "bob"]] |> should equal true
+
+[<Fact>]
+let ``ask returns false when no solution exists`` () =
+    ask extraDB ["likes" /@ [atom "bob"; atom "alice"]] |> should equal false
+
+[<Fact>]
+let ``ask returns true for a satisfiable conjunction`` () =
+    // ?-likes(alice,X),likes(X,carol).
+    ask extraDB
+        ["likes" /@ [atom "alice"; Var "X"]
+         "likes" /@ [Var "X"; atom "carol"]]
+    |> should equal true
+
+[<Fact>]
+let ``findAll returns all values for a variable`` () =
+    // ?-likes(alice,X).
+    let results = findAll "X" extraDB ["likes" /@ [atom "alice"; Var "X"]]
+    results |> should contain (atom "bob")
+    results |> should contain (atom "carol")
+    results |> List.length |> should equal 2
+
+[<Fact>]
+let ``findAll returns empty list when no solution`` () =
+    let results = findAll "X" extraDB ["likes" /@ [atom "nobody"; Var "X"]]
+    results |> should be Empty
+
+[<Fact>]
+let ``findAll over conjunction with shared variable`` () =
+    // ?-likes(alice,X),likes(X,carol).
+    let results =
+        findAll "X" extraDB
+            ["likes" /@ [atom "alice"; Var "X"]
+             "likes" /@ [Var "X"; atom "carol"]]
+    results |> should equal [atom "bob"]
+
+[<Fact>]
+let ``findFirst returns Some for the first solution`` () =
+    // ?-likes(alice,X).
+    let result = findFirst "X" extraDB ["likes" /@ [atom "alice"; Var "X"]]
+    result |> should equal (Some (atom "bob"))
+
+[<Fact>]
+let ``findFirst returns None when no solution`` () =
+    let result = findFirst "X" extraDB ["likes" /@ [atom "nobody"; Var "X"]]
+    result |> should equal None
+
+[<Fact>]
+let ``(?-) works with recursive rules`` () =
+    // ?-ancestor(tom,X).  → all descendants of tom in the family DB
+    let results =
+        family ?- ["ancestor" /@ [atom "tom"; Var "X"]]
+        |> Seq.map (valueOf "X")
+        |> Seq.toList
+    results |> should contain (atom "bob")
+    results |> should contain (atom "liz")
+    results |> should contain (atom "ann")
+    results |> should contain (atom "pat")

@@ -8,25 +8,38 @@ let rec walk (term: Term) (subst: Substitution) : Term =
     | Var v ->
         match Subst.tryFind v subst with
         | Some t -> walk t subst
-        | None -> normalize term
-    | _ -> normalize term
+        | None -> Var v
+    | Compound(name, []) -> Atom name  // normalise zero-arity compounds
+    | _ -> term
 
 /// Apply a substitution deeply to a term, replacing all bound variables.
-let rec applySubst (subst: Substitution) (term: Term) : Term =
-    let t = walk term subst
-    match t with
-    | Var _ -> t  // unbound variable
-    | Atom _ | Integer _ | Float _ -> t
-    | Compound(name, args) ->
-        normalize (Compound(name, args |> List.map (applySubst subst)))
+/// Raises <see cref="System.InvalidOperationException"/> when the term nesting depth
+/// exceeds <see cref="maxTermDepth"/>.
+let applySubst (subst: Substitution) (term: Term) : Term =
+    let rec go depth t =
+        if depth > maxTermDepth then
+            invalidOp $"Term nesting depth exceeds the maximum of {maxTermDepth}. Reduce compound term depth to avoid stack overflow."
+        let walked = walk t subst
+        match walked with
+        | Var _ | Atom _ | Integer _ | Float _ -> walked
+        | Compound(name, []) -> Atom name  // normalise zero-arity
+        | Compound(name, args) ->
+            Compound(name, args |> List.map (go (depth + 1)))
+    go 0 term
 
 /// Occurs check: does variable 'v' appear in term 't' under substitution?
-let rec occursIn (v: string) (term: Term) (subst: Substitution) : bool =
-    let t = walk term subst
-    match t with
-    | Var w -> v = w
-    | Atom _ | Integer _ | Float _ -> false
-    | Compound(_, args) -> args |> List.exists (fun a -> occursIn v a subst)
+/// Raises <see cref="System.InvalidOperationException"/> when the term nesting depth
+/// exceeds <see cref="maxTermDepth"/>.
+let occursIn (v: string) (term: Term) (subst: Substitution) : bool =
+    let rec go depth t =
+        if depth > maxTermDepth then
+            invalidOp $"Term nesting depth exceeds the maximum of {maxTermDepth}. Reduce compound term depth to avoid stack overflow."
+        let walked = walk t subst
+        match walked with
+        | Var w -> v = w
+        | Atom _ | Integer _ | Float _ -> false
+        | Compound(_, args) -> args |> List.exists (fun a -> go (depth + 1) a)
+    go 0 term
 
 let rec private unifyCore (checkOccurs: bool) (t1: Term) (t2: Term) (subst: Substitution) : Substitution option =
     let t1' = walk t1 subst
